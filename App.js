@@ -21,7 +21,14 @@ import {
 //import SplashScreen from 'react-native-splash-screen'
 
 import { Router, Scene, Actions } from "react-native-router-flux";
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import home from "./scenes/home";
+import what from "./scenes/what";
+import where from "./scenes/where";
+import game from "./scenes/game";
+import marker from "./scenes/marker";
+
+
 
 export default class Flux extends Component {
   constructor(props) {
@@ -72,6 +79,11 @@ export default class Flux extends Component {
     console.log("User logged out");
   }
 
+  ios(){
+    var stat = getStatusBarHeight(true);
+      return (<View style={{height:stat, backgroundColor:'black'}}/>)
+    } 
+
   render() {
     var { height, width } = Dimensions.get("window");
 
@@ -86,7 +98,8 @@ export default class Flux extends Component {
           flexDirection: "column"
         }}
       >
-        <StatusBar hidden={false} transparent={true} />
+      {this.ios()}
+        <StatusBar barStyle="light-content" hidden={false} transparent={true} />
 
         <Router>
           <Scene key="root" hideNavBar={true} duration={0}>
@@ -96,9 +109,35 @@ export default class Flux extends Component {
               title="home"
               initial={true}
               onRight={() => {
-                Actions.hozzataplalas();
               }}
-              rightTitle="hozzataplalas"
+            />
+            <Scene
+              key="what"
+              component={what}
+              title="what"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="where"
+              component={where}
+              title="where"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="game"
+              component={game}
+              title="game"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="marker"
+              component={marker}
+              title="marker"
+              onRight={() => {
+              }}
             />
           </Scene>
         </Router>

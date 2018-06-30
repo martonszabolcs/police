@@ -24,18 +24,100 @@ var { height, width } = Dimensions.get("window");
 import { Router, Scene, Actions } from "react-native-router-flux";
 
 export default class Head extends Component {
+  constructor(props) {
+    super(props);
+    console.log(props)
+    this.state = {
+      scene: this.props.scene
+    };
+  }
+  componentWillMount(){
+    console.log(this.state.scene)
+    this.setState({
+      scene: this.props.scene
+    })
+  }
+  change(){
+    if(this.state.scene == "home"){
+      return(
+        <Image
+          source={require('../images/logo.png')}
+          style={{height:height/9-10, width:width/2.3-10}}
+          resizeMode = 'cover'
+        />)
+    }
+    if(this.state.scene == "what"){
+      return(
+        <View style={{justifyContent:'center', alignItems:'center', height:height/9}}>
+        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        MI
+        </Text>
+        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        TÖRTÉNT?
+        </Text>
+        </View>
+        )
+    }
+    if(this.state.scene == "where"){
+      return(
+        <View style={{justifyContent:'center', alignItems:'center', height:height/9}}>
+        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        HOVÁ
+        </Text>
+        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        FORDULHATOK?
+        </Text>
+        </View>
+        )
+    }
+    if(this.state.scene == "game"){
+      return(
+        <View style={{justifyContent:'center', alignItems:'center', height:height/9}}>
+        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        </Text>
+        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        JÁTÉK
+        </Text>
+        </View>
+        )
+    }
+    if(this.state.scene == "marker"){
+      return(
+        <View style={{justifyContent:'center', alignItems:'center', height:height/9}}>
+        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+         HOL
+        </Text>
+        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        TALÁLHATÓ?
+        </Text>
+        </View>
+        )
+    }
+
+  }
+
+  pop(){
+    if (this.state.scene == "home"){
+      return(
+      <Text style={{color:'white', fontSize:22}} > fejléc_ikon </Text>
+      )
+    } else {
+      return(
+      <TouchableOpacity onPress={(() => {Actions.pop() })}>
+      <Text style={{color:'white', fontSize:30}} > VISSZA </Text>
+      </TouchableOpacity>
+      )
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
       <View style={{width:width/2.3, justifyContent:'center', alignItems:'center'}}>
-        <Text style={{color:'white', fontSize:22}} > fejléc_ikon </Text>
+        {this.pop()}
       </View>
       <View style={{height:height/9, width:width/2.3, backgroundColor:"#74B9FF", borderTopRightRadius:10, borderTopLeftRadius:10}}>
-        <Image
-          source={require('../images/logo.png')}
-          style={{height:height/9, width:width/2.3}}
-          resizeMode = 'cover'
-        />
+        {this.change()}
       </View>
       </View>
     );

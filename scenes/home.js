@@ -25,7 +25,7 @@ var { height, width } = Dimensions.get("window");
 import call from 'react-native-phone-call';
 
 const args = {
-  number: '06306102931', // String value with the number to call
+  number: '123456', // String value with the number to call
   prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call 
 }
 
@@ -182,7 +182,7 @@ export default class Home extends Component {
           }}
         >
         {this.sosModal()}
-          <Head />
+          <Head scene="home" />
           <Image
             source={require("../src/images/police_felirat.png")}
             style={{
@@ -194,7 +194,7 @@ export default class Home extends Component {
             }}
             resizeMode="stretch"
           />
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, justifyContent:'center'}}>
             <View
               style={{
                 flexDirection: "row",
@@ -209,6 +209,7 @@ export default class Home extends Component {
                 }}
                 onPressOut={() => {
                   this.setState({ makerPress: false });
+                  Actions.marker();
                 }}
               >
                 <Image
@@ -227,6 +228,7 @@ export default class Home extends Component {
                 }}
                 onPressOut={() => {
                   this.setState({ whatPress: false });
+                  Actions.what();
                 }}
               >
                 <Image
@@ -278,6 +280,7 @@ export default class Home extends Component {
                 }}
                 onPressOut={() => {
                   this.setState({ wherePress: false });
+                  Actions.where();
                 }}
               >
                 <Image
@@ -297,6 +300,7 @@ export default class Home extends Component {
                 }}
                 onPressOut={() => {
                   this.setState({ gamePress: false });
+                  Actions.game();
                 }}
               >
                 <Image
@@ -325,8 +329,6 @@ const styles = StyleSheet.create({
   },
 
   modalContainer: {
-    borderWidth:2,
-    borderColor:'black',
     height: width / 2,
     borderRadius:10,
     width: width / 1.5,

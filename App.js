@@ -76,17 +76,17 @@ export default class Flux extends Component {
     var { height, width } = Dimensions.get("window");
 
     return (
+
       <View
         style={{
           backgroundColor: "#5ecac5",
           paddingBottom: 0,
+          borderRadius:10,
           flex: 1,
-          height: height,
-          width: width,
           flexDirection: "column"
         }}
       >
-        <StatusBar hidden={true} transparent={true} />
+        <StatusBar hidden={false} transparent={true} />
 
         <Router>
           <Scene key="root" hideNavBar={true} duration={0}>
@@ -107,6 +107,4 @@ export default class Flux extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  
-});
+const styles = StyleSheet.create({});

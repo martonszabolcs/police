@@ -17,29 +17,86 @@ import {
   Alert,
   AsyncStorage
 } from "react-native";
-//import SplashScreen from 'react-native-splash-screen'
-
+import Geocoder from "react-native-geocoder";
 import { Router, Scene, Actions } from "react-native-router-flux";
 import Head from "../src/parts/head";
 var { height, width } = Dimensions.get("window");
-import call from 'react-native-phone-call';
-
+import SendSMS from 'react-native-sms'
+import call from "react-native-phone-call";
+var currentcity = ""
 const args = {
-  number: '123456', // String value with the number to call
-  prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call 
-}
+  number: "123456", // String value with the number to call
+  prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call
+};
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: false
+      modalVisible: false,
+      currentcity: ""
     };
+    this.gps();
   }
 
   componentDidMount() {}
 
-  componentWillUnmount() {}
+  gpsRender() {
+    console.log("rerender");
+    if (this.state.currentcity) {
+      return (
+        <View
+          style={{
+            height: 30,
+            width: width,
+            backgroundColor: "blue",
+            justifyContent: "center",
+            position: "absolute",
+            top: height / 9,
+            alignItems: "center"
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 14 }}>
+            {this.state.currentcity}
+          </Text>
+          <Text style={{ color: "white", fontSize: 12 }}>{" közelében"}</Text>
+        </View>
+      );
+    }
+  }
+
+  gps() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        console.log(position);
+        var current = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        console.log(current);
+
+        Geocoder.geocodePosition(current)
+          .then(res => {
+                currentcity = res[0].formattedAddress
+            })
+          .catch(err => console.log(err));
+      },
+      error => console.log(error.message),
+      { enableHighAccuracy: true, distanceFilter: 1, timeout: 1000 }
+    );
+    setInterval(() => {
+      if (currentcity != ""){
+        this.setState({
+          currentcity:currentcity
+        })
+      }
+    },2000)
+  }
+
+  componentWillMount() {}
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
 
   backPressed = () => {
     if (Actions.state.index != 0) {
@@ -104,7 +161,20 @@ export default class Home extends Component {
     }
   }
 
-  sosModal(){
+  sms(){
+
+  SendSMS.send({
+    body: 'The default body of the SMS!',
+    recipients: ['0123456789', '9876543210'],
+    successTypes: ['sent', 'queued']
+  }, (completed, cancelled, error) => {
+
+    console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
+
+  });
+  }
+
+  sosModal() {
     return (
       <View style={{ marginTop: 0 }}>
         <Modal
@@ -129,11 +199,18 @@ export default class Home extends Component {
                     flexDirection: "row",
                     justifyContent: "space-around",
                     alignItems: "center",
-                    padding:10,
+                    padding: 10
                   }}
                 >
-                    <Text style={{ color: "black", fontSize:20, textAlign:'center'  }}>{"Segítséget szeretnél kérni?"}</Text>
-                  
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center"
+                    }}
+                  >
+                    {"Mikor hívja a 112-t? Minden olyan esetben, amikor emberi élet forog kockán, vagy esélyét érzékeli annak, hogy baj lehet (balesetet látott, tűzesetet észlel, vagy például betörést feltételez). Mindig fontolja meg, hogy indít-e hívást, ugyanakkor ne habozzon, ha érzi, hogy szükséges! "}
+                  </Text>
                 </View>
               </View>
               <View
@@ -141,22 +218,23 @@ export default class Home extends Component {
               >
                 <TouchableOpacity
                   onPress={() => {
-                    this.setState({modalVisible:false});
+                    this.setState({ modalVisible: false });
                   }}
                 >
                   <View
                     style={[styles.modalButton, { backgroundColor: "white" }]}
                   >
-                    <Text style={{ color: "black" }}>{"Mégse"}</Text>
+                    <Text style={{ color: "black", fontSize:20 }}>{"Mégse"}</Text>
                   </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    call(args).catch(console.log)
+                    this.sms(),
+                    call(args).catch(console.log);
                   }}
                 >
                   <View style={styles.modalButton}>
-                    <Text style={{ color: "white" }}>{"Segélyhívás!"}</Text>
+                    <Text style={{ color: "white", fontSize:width/18 }}>{"Segélyhívás!"}</Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -168,6 +246,7 @@ export default class Home extends Component {
   }
 
   render() {
+    console.log(this.state.currentcity);
     return (
       <View style={{ backgroundColor: "black", flex: 1 }}>
         <View
@@ -181,7 +260,7 @@ export default class Home extends Component {
             flexDirection: "column"
           }}
         >
-        {this.sosModal()}
+          {this.sosModal()}
           <Head scene="home" />
           <Image
             source={require("../src/images/police_felirat.png")}
@@ -190,11 +269,13 @@ export default class Home extends Component {
               width: width / 8,
               position: "absolute",
               left: 0,
+              marginTop: 10,
               top: height / 8
             }}
             resizeMode="stretch"
           />
-          <View style={{ flex: 1, justifyContent:'center'}}>
+          {this.gpsRender()}
+          <View style={{ flex: 1, justifyContent: "center" }}>
             <View
               style={{
                 flexDirection: "row",
@@ -214,11 +295,29 @@ export default class Home extends Component {
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3, height: width / 3 }}
+                  style={{ width: width / 3.2, height: width / 3.2 }}
                   source={this.makerImage()}
                 />
-                <Text  style={{ color: "white", textAlign:'center', fontWeight:'bold', marginTop:0 }}>{"HOL TALÁLHATÓ?"}</Text>
-
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"HOL"}
+                </Text>
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"TALÁLHATÓ?"}
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -233,18 +332,26 @@ export default class Home extends Component {
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3, height: width / 3 }}
+                  style={{ width: width / 3.2, height: width / 3.2 }}
                   source={this.whatImage()}
                 />
-                <Text  style={{ color: "white", textAlign:'center', fontWeight:'bold', marginTop:0 }}>{"MI TÖRTÉNT?"}</Text>
-
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"MI TÖRTÉNT?"}
+                </Text>
               </TouchableOpacity>
             </View>
             <View
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
-                marginTop:10
+                marginTop: 10
               }}
             >
               <TouchableOpacity
@@ -253,18 +360,25 @@ export default class Home extends Component {
                   this.setState({ sosPress: true });
                 }}
                 onPressOut={() => {
-                  this.setState({ sosPress: false, modalVisible:true });
+                  this.setState({ sosPress: false, modalVisible: true });
                 }}
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3, height: width / 3 }}
+                  style={{ width: width / 3.2, height: width / 3.2 }}
                   source={this.sosImage()}
                 />
-                <Text  style={{ color: "white", textAlign:'center', fontWeight:'bold', marginTop:0 }}>{"SEGÉLYHÍVÁS"}</Text>
-
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"SEGÉLYHÍVÁS"}
+                </Text>
               </TouchableOpacity>
-
             </View>
             <View
               style={{
@@ -285,12 +399,29 @@ export default class Home extends Component {
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3, height: width / 3 }}
+                  style={{ width: width / 3.2, height: width / 3.2 }}
                   source={this.whereImage()}
                 />
-                <Text  style={{ color: "white", textAlign:'center', fontWeight:'bold', marginTop:0 }}>{"HOVÁ"}</Text>
-                <Text  style={{ color: "white", textAlign:'center', fontWeight:'bold', marginTop:0 }}>{"FORDULHATOK?"}</Text>
-
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"HOVÁ"}
+                </Text>
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"FORDULHATOK?"}
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -305,11 +436,19 @@ export default class Home extends Component {
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3, height: width / 3 }}
+                  style={{ width: width / 3.2, height: width / 3.2 }}
                   source={this.gameImage()}
                 />
-                <Text  style={{ color: "white", textAlign:'center', fontWeight:'bold', marginTop:0 }}>{"JÁTÉK"}</Text>
-
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"JÁTÉK"}
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -323,25 +462,25 @@ const styles = StyleSheet.create({
   modalBackground: {
     justifyContent: "center",
     alignItems: "center",
-    borderRadius:10,
+    borderRadius: 10,
     flex: 1,
     backgroundColor: "rgba(255, 0, 0, 0.8)"
   },
 
   modalContainer: {
-    height: width / 2,
-    borderRadius:10,
-    width: width / 1.5,
+    height: height -50,
+    borderRadius: 10,
+    width: width-50,
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "space-between"
   },
   modalButton: {
-    height: 40,
+    height: height/5,
     backgroundColor: "red",
-    borderRadius:10,
-    width: width / 3,
+    borderRadius: 10,
+    width: width /2-25,
     justifyContent: "center",
     alignItems: "center"
-  },
+  }
 });

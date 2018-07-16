@@ -27,6 +27,7 @@ import what from "./scenes/what";
 import where from "./scenes/where";
 import game from "./scenes/game";
 import marker from "./scenes/marker";
+import gameOf from "./scenes/gameOf";
 
 
 
@@ -115,6 +116,13 @@ export default class Flux extends Component {
               key="what"
               component={what}
               title="what"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="gameOf"
+              component={gameOf}
+              title="gameOf"
               onRight={() => {
               }}
             />

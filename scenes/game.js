@@ -15,7 +15,8 @@ import {
   Platform,
   BackHandler,
   Alert,
-  AsyncStorage
+  AsyncStorage,
+  ImageBackground
 } from "react-native";
 //import SplashScreen from 'react-native-splash-screen'
 
@@ -41,7 +42,34 @@ export default class Home extends Component {
 
   componentWillUnmount() {}
 
-  
+  makerImage() {
+    if (this.state.makerPress) {
+      return require("../src/images/11.png");
+    } else {
+      return require("../src/images/1.png");
+    }
+  }
+  whatImage() {
+      return require("../src/images/helyszin.png");
+  }
+  sosImage() {
+      return require("../src/images/egyenruha.png");
+   
+  }
+  whereImage() {
+    if (this.state.wherePress) {
+      return require("../src/images/buttons/where_in.png");
+    } else {
+      return require("../src/images/buttons/where.png");
+    }
+  }
+  gameImage() {
+    if (this.state.gamePress) {
+      return require("../src/images/buttons/game_in.png");
+    } else {
+      return require("../src/images/buttons/game.png");
+    }
+  }
 
   render() {
     return (
@@ -60,6 +88,111 @@ export default class Home extends Component {
           <Head scene="game"/>
   
           <View style={{ flex: 1, justifyContent:'center'}}>
+          <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                marginTop: height / 20
+              }}
+            >
+              <TouchableOpacity
+                
+                onPressIn={() => {
+                  this.setState({ makerPress: true });
+                }}
+                onPressOut={() => {
+                  this.setState({ makerPress: false });
+                  Actions.gameOf();
+                }}
+              >
+                <ImageBackground
+                  resizeMode="stretch"
+                  style={{ width: width / 2.5, height: width / 2.5, justifyContent:'center', alignItems:'center' }}
+                  source={this.makerImage()}
+                >
+                <Image
+                  resizeMode="stretch"
+                  style={{ width: width / 2.5, height: width / 2.5 , justifyContent:'center', alignItems:'center', borderRadius:20}}
+                  source={require("../src/images/megfigyeles.png")}
+                />
+                </ImageBackground>
+
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"Megfigyelés Játék"}
+                </Text>
+               
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                
+                onPressIn={() => {
+                  this.setState({ whatPress: true });
+                }}
+                onPressOut={() => {
+                  this.setState({ whatPress: false });
+                }}
+              >
+               
+                <Image
+                  resizeMode="stretch"
+                  style={{ width: width / 2.5, height: width / 2.5 , justifyContent:'center', alignItems:'center', borderRadius:20}}
+                  source={this.whatImage()}
+                />
+
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"MI HIÁNYZIK?"}
+                </Text>
+
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                marginTop: 10
+              }}
+            >
+              <TouchableOpacity
+                
+                onPressIn={() => {
+                  this.setState({ sosPress: true });
+                }}
+                onPressOut={() => {
+                  this.setState({ sosPress: false });
+                }}
+              >
+                <Image
+                  resizeMode="stretch"
+                  style={{ width: width / 2.5, height: width / 2.5 , borderRadius:20, justifyContent:'center', alignItems:'center', borderRadius:20}}
+                  source={this.sosImage()}
+                />
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginTop: 0
+                  }}
+                >
+                  {"RENDŐR EGYENRUHA"}
+                </Text>
+
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>

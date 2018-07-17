@@ -81,7 +81,7 @@ export default class Home extends Component {
             })
           .catch(err => console.log(err));
       },
-      error => console.log(error.message),
+      error => {console.log(error.message),this.gps()} ,
       { enableHighAccuracy: true, distanceFilter: 1, timeout: 1000 }
     );
     setInterval(() => {
@@ -90,7 +90,7 @@ export default class Home extends Component {
           currentcity:currentcity
         })
       }
-    },2000)
+    },3000)
   }
 
   componentWillMount() {}

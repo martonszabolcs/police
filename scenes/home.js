@@ -15,7 +15,8 @@ import {
   Platform,
   BackHandler,
   Alert,
-  AsyncStorage
+  AsyncStorage,
+  ImageBackground
 } from "react-native";
 import Geocoder from "react-native-geocoder";
 import { Router, Scene, Actions } from "react-native-router-flux";
@@ -34,7 +35,8 @@ export default class Home extends Component {
     super(props);
     this.state = {
       modalVisible: false,
-      currentcity: ""
+      currentcity: "",
+      interval: 0
     };
     this.gps();
   }
@@ -47,10 +49,14 @@ export default class Home extends Component {
       return (
         <View
           style={{
-            height: 30,
-            width: width,
-            backgroundColor: "blue",
+            height: 40,
+            marginTop:5,
+            marginLeft:5,
+            marginRight:5,
+            width: width-10,
+            backgroundColor: "#0984E3",
             justifyContent: "center",
+            borderRadius:10,
             position: "absolute",
             top: height / 9,
             alignItems: "center"
@@ -77,25 +83,35 @@ export default class Home extends Component {
 
         Geocoder.geocodePosition(current)
           .then(res => {
-                currentcity = res[0].formattedAddress
+            console.log(res)
+            if (res[0].streetNumber != null){
+                currentcity = res[0].countryCode + " " + res[0].postalCode + " " + res[0].locality + ", " + res[0].streetName + " " + res[0].streetNumber
+            } else {
+                currentcity = res[0].countryCode + " " + res[0].postalCode + " " + res[0].locality + ", " + res[0].streetName;
+
+            }
             })
           .catch(err => console.log(err));
       },
       error => {console.log(error.message),this.gps()} ,
       { enableHighAccuracy: true, distanceFilter: 1, timeout: 1000 }
     );
-    setInterval(() => {
+  
+      this._interval = setInterval(() => {
       if (currentcity != ""){
+        clearInterval(this._interval)
         this.setState({
-          currentcity:currentcity
+          currentcity:currentcity,
         })
       }
-    },3000)
+    },1)
   }
 
   componentWillMount() {}
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID);
+      clearInterval(this._interval);
+
   }
 
   backPressed = () => {
@@ -248,7 +264,7 @@ export default class Home extends Component {
   render() {
     console.log(this.state.currentcity);
     return (
-      <View style={{ backgroundColor: "black", flex: 1 }}>
+      <View style={{ backgroundColor: "black", flex: 1, alignItems:'center' }}>
         <View
           style={{
             backgroundColor: "#74B9FF",

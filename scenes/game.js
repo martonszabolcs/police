@@ -88,11 +88,14 @@ export default class Home extends Component {
           <Head scene="game"/>
   
           <View style={{ flex: 1, justifyContent:'center'}}>
+          <View style={{ marginTop: height/20, marginBottom:height/20, borderRadius:20, flex: 1, justifyContent:'space-around',
+                backgroundColor:'white'
+        }}>
           <View
               style={{
                 flexDirection: "row",
                 justifyContent: "space-around",
-                marginTop: height / 20
+                marginTop: height / 20,
               }}
             >
               <TouchableOpacity
@@ -105,21 +108,16 @@ export default class Home extends Component {
                   Actions.gameOf();
                 }}
               >
-                <ImageBackground
-                  resizeMode="stretch"
-                  style={{ width: width / 2.5, height: width / 2.5, justifyContent:'center', alignItems:'center' }}
-                  source={this.makerImage()}
-                >
+                
                 <Image
                   resizeMode="stretch"
                   style={{ width: width / 2.5, height: width / 2.5 , justifyContent:'center', alignItems:'center', borderRadius:20}}
                   source={require("../src/images/megfigyeles.png")}
                 />
-                </ImageBackground>
 
                 <Text
                   style={{
-                    color: "white",
+                    color: "#1A86E0",
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 0
@@ -148,7 +146,7 @@ export default class Home extends Component {
 
                 <Text
                   style={{
-                    color: "white",
+                    color: "#1A86E0",
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 0
@@ -163,7 +161,9 @@ export default class Home extends Component {
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
-                marginTop: 10
+                alignItems:'center',
+                marginTop: 10,
+
               }}
             >
               <TouchableOpacity
@@ -177,21 +177,22 @@ export default class Home extends Component {
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 2.5, height: width / 2.5 , borderRadius:20, justifyContent:'center', alignItems:'center', borderRadius:20}}
+                  style={{ width: width / 2.5, height: width / 2.5 }}
                   source={this.sosImage()}
                 />
                 <Text
                   style={{
-                    color: "white",
+                    color: "#1A86E0",
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 0
                   }}
                 >
-                  {"RENDŐR EGYENRUHA"}
+                  {"Nemzetiség"}
                 </Text>
 
               </TouchableOpacity>
+            </View>
             </View>
           </View>
         </View>

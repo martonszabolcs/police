@@ -99,13 +99,46 @@ export default class Head extends Component {
   pop(){
     if (this.state.scene == "home"){
       return(
-      <Text style={{color:'white', fontSize:22}} > fejléc_ikon </Text>
+        <View style={{flexDirection:'row'}}>
+        <TouchableOpacity onPress={(() => {Actions.pop() })}>
+      <View style={{width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'space-around'}}>
+
+        <Image
+        resizeMode="stretch"
+        style={{ width: width / 10, height: width / 10 }}
+        source={require("../../src/images/settings.png")}
+      />
+      </View>
+      </TouchableOpacity>
+      <Image
+        resizeMode="stretch"
+        style={{ width: width / 5, height: width / 5, marginLeft:20}}
+        source={require("../../src/images/police-car.png")}
+      />
+        </View>
+
       )
     } else {
       return(
+      <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
       <TouchableOpacity onPress={(() => {Actions.pop() })}>
-      <Text style={{color:'white', fontSize:30}} > VISSZA </Text>
+      <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
+
+        <Image
+        resizeMode="stretch"
+        style={{ width: width / 9, height: width / 9 }}
+        source={require("../../src/images/back.png")}
+      />
+      </View>
       </TouchableOpacity>
+      <Image
+        resizeMode="stretch"
+        style={{ width: height/10, height: height/10, marginRight:20 }}
+        source={require("../../src/images/policeman.png")}
+      />
+      <View style={{width:width/10, height:width/10}}/>
+      </View>
+
       )
     }
   }
@@ -113,7 +146,7 @@ export default class Head extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <View style={{width:width/2.3, justifyContent:'center', alignItems:'center'}}>
+      <View style={{width:width/1.8, justifyContent:'center', backgroundColor:'transparent', alignItems:'center'}}>
         {this.pop()}
       </View>
       <View style={{height:height/9, width:width/2.3, backgroundColor:"#74B9FF", borderTopRightRadius:10, borderTopLeftRadius:10}}>

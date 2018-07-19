@@ -45,9 +45,6 @@ export default class Home extends Component {
       hatodikjo:"",
       hetedikjo:"",
       ertekeles:""
-      
-      
-
     };
   }
 

@@ -53,6 +53,15 @@ export default class Home extends Component {
           number3: results.number3,
         })
       }
+      if (this.state.number1 == undefined){
+      this.setState({number1: ""})
+    }
+    if (this.state.number2 == undefined){
+      this.setState({number2: ""})
+    }
+    if (this.state.number3 == undefined){
+      this.setState({number3: ""})
+    }
   })
   }
 
@@ -205,17 +214,12 @@ export default class Home extends Component {
   }
 
   sms(){
+    console.log(this.state.number1)
+    console.log(this.state.number2)
+    console.log(this.state.number3)
     var long = this.state.lng;
     var lat = this.state.lat;
-    if (this.state.number1 == undefined){
-      this.setState({number1: ""})
-    }
-    if (this.state.number2 == undefined){
-      this.setState({number2: ""})
-    }
-    if (this.state.number3 == undefined){
-      this.setState({number3: ""})
-    }
+    
     var number1 = this.state.number1;
     var number2 = this.state.number2;
     var number3 = this.state.number3;
@@ -269,18 +273,47 @@ export default class Home extends Component {
         >
           <View style={styles.modalBackground}>
             <View style={styles.modalContainer}>
+            <View
+                style={{ width:width, height:width/7, justifyContent: "flex-start", paddingTop:20, paddingLeft:20 }}
+              >
+              <View
+                style={{ marginLeft:20, justifyContent: "flex-start", marginBottom:5 }}
+              >
+                <TouchableOpacity
+                  onPress={() => {
+                    this.setState({ modalVisible: false });
+                  }}
+                >
+
+        <Image
+        resizeMode="stretch"
+        style={{ width: width / 8, height: width / 8 }}
+        source={require("../src/images/backCall.png")}/>
+                </TouchableOpacity>
+              </View>
+              </View>
               <View
                 style={{
-                  justifyContent: "space-between",
                   flex: 1,
-                  alignItems: "center"
+                  alignItems: "center",
+                  marginTop:height/20
                 }}
               >
+              <Image
+            source={require("../src/images/telephone.png")}
+            style={{
+              height: width / 3.5,
+              width: width / 3.5,
+              marginTop: 0,
+            }}
+            resizeMode="stretch"
+          />
                 <View
                   style={{
                     justifyContent: "space-around",
                     alignItems: "center",
                     padding: 10,
+                    backgroundColor:'transparent',
                     marginTop:height/20
                   }}
                 >
@@ -290,22 +323,23 @@ export default class Home extends Component {
                       fontSize: height/25,
                       fontWeight:'bold',
                       textAlign: "center",
-                      marginBottom:height/10
+                      marginBottom:10
                     }}
                   >
                     {"Mikor hívd a 112-t?"}
                   </Text>
                   <View
                   style={{
-                    backgroundColor:'#DB3148',
+                    backgroundColor:'transparent',
                     borderRadius:20,
+                    width:width-40,
                     padding: 20,
                   }}
                 >
                   <Text
                     style={{
-                      color: "white",
-                      fontSize: height/35,
+                      color: "black",
+                      fontSize: height/40,
                       textAlign: "left"
                     }}
                   >
@@ -315,7 +349,7 @@ export default class Home extends Component {
                 </View>
                 </View>
               </View>
-              <View style={{flexDirection:'row', justifyContent:'space-around',marginBottom:10}}>
+              <View style={{flexDirection:'row', justifyContent:'space-around',marginBottom:20, width:width-20}}>
               <TouchableOpacity
                   onPress={() => {
                     this.sms();
@@ -323,8 +357,8 @@ export default class Home extends Component {
                   }}
                 >
                   <View 
-                    style={[styles.modalButton, { backgroundColor: "white", marginRight:5, borderWidth:1, borderColor:"#DB3148" }]}>
-                  <Text style={{ color: "#DB3148", textAlign:'center', fontSize:width/25 }}>{"Helyzetem küldése"}</Text>
+                    style={[styles.modalButton, { backgroundColor: "white", borderWidth:1, borderColor:"#D77179" }]}>
+                  <Text style={{ color: "#D77179", textAlign:'center', fontSize:width/25 }}>{"Helyzetem küldése"}</Text>
                   </View>
                 </TouchableOpacity>
               <TouchableOpacity
@@ -334,26 +368,10 @@ export default class Home extends Component {
                 >
                   <View
                    style={[styles.modalButton, {}]}>
-                    <Text style={{ color: "white", fontSize:width/25, marginLeft:5 }}>{"Segélyhívás"}</Text>
+                    <Text style={{ color: "white", fontSize:width/25, }}>{"Segélyhívás"}</Text>
                   </View>
                 </TouchableOpacity>
                 
-              </View>
-
-              <View
-                style={{ flexDirection: "row", justifyContent: "space-around", marginBottom:5 }}
-              >
-                <TouchableOpacity
-                  onPress={() => {
-                    this.setState({ modalVisible: false });
-                  }}
-                >
-                  <View
-                    style={[styles.modalButton, { backgroundColor: "white", borderWidth:1, borderColor:"black" }]}
-                  >
-                    <Text style={{ color: "black", fontSize:20 }}>{"Mégse"}</Text>
-                  </View>
-                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -590,7 +608,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     flex: 1,
-    backgroundColor: "rgba(255, 0, 0, 0.6)"
+    backgroundColor: "rgba(193, 66, 66, 0.9)"
   },
 
   modalContainer: {
@@ -599,11 +617,10 @@ const styles = StyleSheet.create({
     width: width-40,
     backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "space-between"
   },
   modalButton: {
     height: height/10,
-    backgroundColor: "#DB3148",
+    backgroundColor: "#D77179",
     borderRadius: 20,
     width: width /3,
     justifyContent: "center",

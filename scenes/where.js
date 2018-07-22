@@ -145,7 +145,7 @@ export default class Where extends Component {
               <Image
                   source={require("../src/images/social.png")}
                   style={{width:height/15, height:height/15, marginLeft:10, zIndex:100, borderRadius:10}}/>
-                <Text numberOfLines={2} style={[styles.cim, {color:'#17776f', marginLeft:5, width:width/1.5, paddingTop:2, paddingBottom:2, textAlign:'center', fontSize:height/45}]}>
+                <Text numberOfLines={2} style={[styles.cim, {color:'black', marginLeft:20, marginRight:20, width:width/1.5, paddingTop:2, paddingBottom:2, textAlign:'left', fontSize:height/45}]}>
                   {rowData.Név}
                 </Text>
               </View>

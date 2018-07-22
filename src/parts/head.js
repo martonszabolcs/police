@@ -133,7 +133,7 @@ export default class Head extends Component {
 
         <Image
         resizeMode="stretch"
-        style={{ width: width / 9, height: width / 9 }}
+        style={{ width: width / 12, height: width / 12 }}
         source={require("../../src/images/back.png")}
       />
       </View>
@@ -181,7 +181,7 @@ export default class Head extends Component {
 
         <Image
         resizeMode="stretch"
-        style={{ width: width / 9, height: width / 9 }}
+        style={{ width: width / 12, height: width / 12 }}
         source={require("../../src/images/back.png")}
       />
       </View>
@@ -204,7 +204,7 @@ export default class Head extends Component {
 
         <Image
         resizeMode="stretch"
-        style={{ width: width / 9, height: width / 9 }}
+        style={{ width: width / 12, height: width / 12 }}
         source={require("../../src/images/back.png")}
       />
       </View>
@@ -227,7 +227,7 @@ export default class Head extends Component {
 
         <Image
         resizeMode="stretch"
-        style={{ width: width / 9, height: width / 9 }}
+        style={{ width: width / 12, height: width / 12 }}
         source={require("../../src/images/back.png")}
       />
       </View>
@@ -235,7 +235,7 @@ export default class Head extends Component {
       <Image
         resizeMode="stretch"
         style={{ width: height/10, height: height/10, marginRight:20 }}
-        source={require("../../src/images/policeman.png")}
+        source={require("../../src/images/what.png")}
       />
       <View style={{width:width/10, height:width/10}}/>
       </View>
@@ -250,7 +250,7 @@ export default class Head extends Component {
 
         <Image
         resizeMode="stretch"
-        style={{ width: width / 9, height: width / 9 }}
+        style={{ width: width / 12, height: width / 12 }}
         source={require("../../src/images/back.png")}
       />
       </View>

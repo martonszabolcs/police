@@ -112,11 +112,14 @@ export default class Home extends Component {
           <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"Web: "}{this.state.infos.Web}</Text>
           <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"Telefon: "}{this.state.infos.Telefon}{" "}{this.state.infos.Telefon2}</Text>
           <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"E-mail: "}{this.state.infos.email}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, marginTop:30, textAlign:'left', fontSize:width/25 }}>{this.state.infos.TEGYESZ}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'left', fontSize:width/25 }}>{this.state.infos.leiras1}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'left', fontSize:width/25 }}>{this.state.infos.leiras2}</Text>
+          <View style={{ flex: 1, marginTop:20, backgroundColor:'white', marginLeft:20, paddingTop:20, paddingBottom:20, marginRight:20, borderRadius:10}}>
+
+          <Text style={{ color: "black", paddingLeft:20, paddingRight:20, textAlign:'left', fontSize:width/25 }}>{this.state.infos.TEGYESZ}</Text>
+          <Text style={{ color: "black", paddingLeft:20, paddingRight:20, textAlign:'left', fontSize:width/25 }}>{this.state.infos.leiras1}</Text>
+          <Text style={{ color: "black", paddingLeft:20, paddingRight:20, textAlign:'left', fontSize:width/25 }}>{this.state.infos.leiras2}</Text>
 
           
+          </View>
 
           </ScrollView>
           </View>
@@ -126,7 +129,7 @@ export default class Home extends Component {
                   }}
                 >
                   <View 
-                    style={[styles.modalButton, { backgroundColor: "transparent", marginBottom:20, borderWidth:1, borderColor:"white", justifyContent:'center', alignItems:'center' }]}>
+                    style={[styles.modalButton, { backgroundColor: "transparent", marginBottom:20, marginTop:20, borderWidth:1, borderColor:"white", justifyContent:'center', alignItems:'center' }]}>
                   <Text style={{ color: "white", textAlign:'center', fontSize:width/25 }}>{"Vissza"}</Text>
                   </View>
                 </TouchableOpacity>

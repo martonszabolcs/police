@@ -31,6 +31,8 @@ import gameOf from "./scenes/gameOf";
 import settings from "./scenes/settings";
 import reszletesnezet from "./scenes/reszletesnezet";
 import reszletesnezetWhere from "./scenes/reszletesnezetWhere";
+import reszletesnezetWhat from "./scenes/reszletesnezetWhat";
+import reszletesnezetNagykovet from "./scenes/reszletesnezetNagykovet";
 import gameEgyenruhak from "./scenes/gameEgyenruhak";
 
 
@@ -144,6 +146,20 @@ export default class Flux extends Component {
               key="gameOf"
               component={gameOf}
               title="gameOf"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="reszletesnezetWhat"
+              component={reszletesnezetWhat}
+              title="reszletesnezetWhat"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="reszletesnezetNagykovet"
+              component={reszletesnezetNagykovet}
+              title="reszletesnezetNagykovet"
               onRight={() => {
               }}
             />

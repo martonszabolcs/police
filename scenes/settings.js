@@ -136,7 +136,7 @@ export default class Home extends Component {
                     padding:10,
                     backgroundColor:'white',
                     borderRadius:20,
-                    width: width - 100,
+                    width: width - 40,
                     height: 60
                   }}
                   onChangeText={number1 => this.setState({ number1 })}
@@ -157,7 +157,7 @@ export default class Home extends Component {
                     padding:10,
                     backgroundColor:'white',
                     borderRadius:20,
-                    width: width - 100,
+                    width: width - 40,
                     height: 60
                   }}
                   onChangeText={number2 => this.setState({ number2 })}
@@ -178,7 +178,7 @@ export default class Home extends Component {
                     padding:10,
                     backgroundColor:'white',
                     borderRadius:20,
-                    width: width - 100,
+                    width: width - 40,
                     height: 60
                   }}
                   onChangeText={number3 => this.setState({ number3 })}

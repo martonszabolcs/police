@@ -85,7 +85,7 @@ export default class Home extends Component {
   }
 
   telovan(){
-    if (this.state.infos.Telefoszám){
+    if (this.state.infos.Telefon){
       return(
         <TouchableOpacity
                   onPress={() => {
@@ -136,10 +136,13 @@ export default class Home extends Component {
           <Head scene="reszletes"/>
   
           <View style={{ flex: 1, alignItems:'center'}}>
-          <Text style={{ color: "white", fontWeight:'bold', padding:20, textAlign:'center', fontSize:width/15 }}>{this.state.infos.Név}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{this.state.infos.address}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{this.state.infos.Telefoszám}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{this.state.infos.email}</Text>
+          <Text style={{ color: "white", fontWeight:'bold', padding:20, textAlign:'center', fontSize:width/15 }}>{this.state.infos.Ország}</Text>
+          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"Város: "}{this.state.infos.Város}</Text>
+          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"Utca: "}{this.state.infos.Cím}</Text>
+          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"Honlap: "}{this.state.infos.Webcím}</Text>
+          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"Telefon: "}{this.state.infos.Telefon}</Text>
+          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{this.state.infos.Ügyelet}</Text>
+          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"E-mail: "}{this.state.infos.email}</Text>
           <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"Koordináták: "}{this.state.infos.Lat}{"; "}{this.state.infos.Long}</Text>
 
           {this.telovan()}

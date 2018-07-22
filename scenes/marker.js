@@ -25,6 +25,7 @@ import Head from "../src/parts/head";
 var { height, width } = Dimensions.get("window");
 
 var json = require('../src/data/where.json');
+var jsonNagykovet = require('../src/data/nagykovet.json');
 
 
 export default class Where extends Component {
@@ -33,7 +34,8 @@ export default class Where extends Component {
 
     this.state = {
       modalVisible: false,
-      data: json.police
+      data: json.police,
+      data2: jsonNagykovet.nagykovet
     };
     this.dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1.guid != r2.guid});
 
@@ -41,6 +43,7 @@ export default class Where extends Component {
 
   componentDidMount() {
     console.log(json)
+    console.log(jsonNagykovet)
 
   }
 
@@ -127,7 +130,13 @@ export default class Where extends Component {
           <Head scene="marker"/>
   
           <View style={{ flex: 1, justifyContent:'center'}}>
+          
           <ScrollView style={{backgroundColor:'transparent'}}>
+          <View style={{ backgroundColor:'transparent', width:width, borderBottomLeftRadius:10, marginTop:20, borderBottomRightRadius:20, justifyContent:'center', alignItems:'center'}}>
+          <Text numberOfLines={2} style={[styles.cim, {color:'white', marginLeft:5, width:width/1.5, paddingTop:2, paddingBottom:2, textAlign:'center', fontSize:height/30}]}>
+                  Rendőr-főkapitányságok
+                </Text>
+          </View>
                 <ListView
             dataSource={this.dataSource.cloneWithRows(this.state.data)}
             enableEmptySections={true}
@@ -145,8 +154,40 @@ export default class Where extends Component {
               <Image
                   source={require("../src/images/police-station.png")}
                   style={{width:height/15, height:height/15, marginLeft:10, zIndex:100, borderRadius:10}}/>
-                <Text numberOfLines={2} style={[styles.cim, {color:'#17776f', marginLeft:5, width:width/1.5, paddingTop:2, paddingBottom:2, textAlign:'center', fontSize:height/45}]}>
+                <Text numberOfLines={2} style={[styles.cim, {color:'black', marginLeft:20, marginRight:20, width:width/1.5, paddingTop:2, paddingBottom:2, textAlign:'left', fontSize:height/45}]}>
                   {rowData.Név}
+                </Text>
+              </View>
+              </TouchableOpacity>
+
+              </View>
+              </View>
+              )}>
+          </ListView>
+           <View style={{ backgroundColor:'transparent', width:width, borderBottomLeftRadius:10, marginTop:20, borderBottomRightRadius:20, justifyContent:'center', alignItems:'center'}}>
+          <Text numberOfLines={2} style={[styles.cim, {color:'white', marginLeft:5, width:width/1.5, paddingTop:2, paddingBottom:2, textAlign:'center', fontSize:height/30}]}>
+                 Európai nagykövetségek
+                </Text>
+          </View>
+           <ListView
+            dataSource={this.dataSource.cloneWithRows(this.state.data2)}
+            enableEmptySections={true}
+            stickyHeaderIndices={[10]}
+            initialListSize={0}
+            contentContainerStyle={styles.list}
+            scrollEnabled={true}
+            pageSize={2}
+            column={2}
+            renderRow={ (rowData, sectionID, rowID, highlightRow)=> (
+            <View numberOfLines={1} style={{backgroundColor:'transparent', justifyContent:'center', alignItems:'center'}}>
+              <View style={{marginTop:10, alignItems:'center'}}>
+              <TouchableOpacity onPress={() => {Actions.reszletesnezetNagykovet({ data: rowData})}}>
+              <View style={{backgroundColor:"white", width:width-40, height:height/10, borderRadius:10, flexDirection:'row', alignItems:'center'}}>
+              <Image
+                  source={require("../src/images/nagykovet.png")}
+                  style={{width:height/15, height:height/15, marginLeft:10, zIndex:100, borderRadius:10}}/>
+                <Text numberOfLines={2} style={[styles.cim, {color:'black', marginLeft:20, marginRight:20, width:width/1.5, paddingTop:2, paddingBottom:2, textAlign:'left', fontSize:height/45}]}>
+                  {rowData.Ország}
                 </Text>
               </View>
               </TouchableOpacity>

@@ -32,7 +32,8 @@ export default class Home extends Component {
     super(props);
     this.state = {
       modalVisible: false,
-      infos: this.props.data
+      infos: this.props.data,
+      on:false
     };
     console.log(this.state.infos)
   this.load();
@@ -84,35 +85,21 @@ export default class Home extends Component {
     console.log("User logged out");
   }
 
-  telovan(){
-    if (this.state.infos.Telefoszám){
+  mittegyek(){
+    if (this.state.on){
       return(
-        <TouchableOpacity
-                  onPress={() => {
-                    const args = {
-          number: this.state.infos.Telefoszám, // String value with the number to call
-          prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call
-          };
-                    console.log(args)
-                    call(args).catch(console.log);
-                  }}
-                >
-                  <View
-                   style={[styles.modalButton, {}]}>
-                   <Image
-            source={require("../src/images/telefon.png")}
-            style={{
-              height: 40,
-              width: 40,
-            }}
-            resizeMode="stretch"
-          />
-                  </View>
-                </TouchableOpacity>
+        <View style={{width:width-40, backgroundColor:'white', borderBottomRightRadius:10, borderBottomLeftRadius:10, paddingBottom:20}}>
+
+          <Text style={{ color: "black", paddingLeft:20, paddingRight:20, textAlign:'left', fontSize:width/25 }}>{this.state.infos.whatcanido}</Text>
+        </View>
+
 )
 
     }
   }
+handleScroll = (event: Object) => {
+    this.setState({scrollX: event.nativeEvent.contentOffset.x, scrollY: event.nativeEvent.contentOffset.y})
+}
 
   
 
@@ -135,15 +122,32 @@ export default class Home extends Component {
         >
           <Head scene="reszletes"/>
   
+          <ScrollView ref={(scrollView) => { this._scrollView = scrollView; }}
+  onScroll={this.handleScroll}>
           <View style={{ flex: 1, alignItems:'center'}}>
-          <Text style={{ color: "white", fontWeight:'bold', padding:20, textAlign:'center', fontSize:width/15 }}>{this.state.infos.Név}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{this.state.infos.address}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{this.state.infos.Telefoszám}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{this.state.infos.email}</Text>
-          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'center', fontSize:width/25 }}>{"Koordináták: "}{this.state.infos.Lat}{"; "}{this.state.infos.Long}</Text>
 
-          {this.telovan()}
+          <Text style={{ color: "white", fontWeight:'bold', padding:20, textAlign:'left', fontSize:width/15 }}>{this.state.infos.what}</Text>
+          <Text style={{ color: "white", paddingLeft:20, paddingRight:20, textAlign:'left', fontSize:width/25 }}>{this.state.infos.desc}</Text>
+          <TouchableOpacity
+                  onPress={() => {
+                    this.setState({on: true})
+                    setTimeout(() => {
+                        this._scrollView.scrollTo({y: this.state.scrollY + height/1.5});
+
+
+                    },500)
+
+                    }}
+                >
+                  <View 
+                    style={[styles.modalButton, { backgroundColor: "white", marginBottom:0, borderBottomLeftRadius:0, borderBottomRightRadius:0, borderWidth:1, borderColor:"white", justifyContent:'center', alignItems:'center' }]}>
+                  <Text style={{ color: "red", fontWeight:"bold", textAlign:'center', fontSize:width/25 }}>{"Mit tegyek?"}</Text>
+                  </View>
+                </TouchableOpacity>
+          {this.mittegyek()}
           </View>
+          </ScrollView>
+
            <TouchableOpacity
                   onPress={() => {
                     Actions.pop();

@@ -28,6 +28,9 @@ import where from "./scenes/where";
 import game from "./scenes/game";
 import marker from "./scenes/marker";
 import gameOf from "./scenes/gameOf";
+import settings from "./scenes/settings";
+import reszletesnezet from "./scenes/reszletesnezet";
+import reszletesnezetWhere from "./scenes/reszletesnezetWhere";
 
 
 
@@ -35,6 +38,7 @@ export default class Flux extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.firstTime();
   }
 
   componentDidMount() {
@@ -50,6 +54,22 @@ export default class Flux extends Component {
   }
   componentWillUnmount() {
     BackHandler.removeEventListener("hardwareBackPress", this.backPressed);
+  }
+  firstTime() {
+    AsyncStorage.getItem("this.props.pagekey", (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (result == null) {
+          Actions.settings();
+        }
+      }
+      AsyncStorage.setItem(
+        "this.props.pagekey",
+        JSON.stringify({ value: "true" }),
+        (err, result) => {}
+      );
+    });
   }
 
   backPressed = () => {
@@ -123,6 +143,27 @@ export default class Flux extends Component {
               key="gameOf"
               component={gameOf}
               title="gameOf"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="settings"
+              component={settings}
+              title="settings"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="reszletesnezet"
+              component={reszletesnezet}
+              title="reszletesnezet"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="reszletesnezetWhere"
+              component={reszletesnezetWhere}
+              title="reszletesnezetWhere"
               onRight={() => {
               }}
             />

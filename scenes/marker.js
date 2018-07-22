@@ -15,6 +15,7 @@ import {
   Platform,
   BackHandler,
   Alert,
+  ListView,
   AsyncStorage
 } from "react-native";
 //import SplashScreen from 'react-native-splash-screen'
@@ -22,26 +23,92 @@ import {
 import { Router, Scene, Actions } from "react-native-router-flux";
 import Head from "../src/parts/head";
 var { height, width } = Dimensions.get("window");
-import call from 'react-native-phone-call';
 
-const args = {
-  number: '123456', // String value with the number to call
-  prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call 
-}
+var json = require('../src/data/where.json');
 
-export default class Home extends Component {
+
+export default class Where extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      modalVisible: false
+      modalVisible: false,
+      data: json.police
     };
+    this.dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1.guid != r2.guid});
+
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(json)
+
+  }
 
   componentWillUnmount() {}
 
-  
+  backPressed = () => {
+    if (Actions.state.index != 0) {
+      Actions.pop();
+      return true;
+    } else {
+      Alert.alert(
+        "Alkalmazás bezárása",
+        "Biztosan bezárod az alkalmazást?",
+        [
+          {
+            text: "Mégse",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "Igen", onPress: () => BackHandler.exitApp() }
+        ],
+        { cancelable: false }
+      );
+      return true;
+    }
+  };
+
+  //SplashScreen.hide();
+
+  handleLogout() {
+    console.log("User logged out");
+  }
+  makerImage() {
+    if (this.state.makerPress) {
+      return require("../src/images/buttons/maker_in.png");
+    } else {
+      return require("../src/images/buttons/maker.png");
+    }
+  }
+  whatImage() {
+    if (this.state.whatPress) {
+      return require("../src/images/buttons/what_in.png");
+    } else {
+      return require("../src/images/buttons/what.png");
+    }
+  }
+  sosImage() {
+    if (this.state.sosPress) {
+      return require("../src/images/buttons/sos_in.png");
+    } else {
+      return require("../src/images/buttons/sos.png");
+    }
+  }
+  whereImage() {
+    if (this.state.wherePress) {
+      return require("../src/images/buttons/where_in.png");
+    } else {
+      return require("../src/images/buttons/where.png");
+    }
+  }
+  gameImage() {
+    if (this.state.gamePress) {
+      return require("../src/images/buttons/game_in.png");
+    } else {
+      return require("../src/images/buttons/game.png");
+    }
+  }
+
 
   render() {
     return (
@@ -60,6 +127,37 @@ export default class Home extends Component {
           <Head scene="marker"/>
   
           <View style={{ flex: 1, justifyContent:'center'}}>
+          <ScrollView style={{backgroundColor:'transparent'}}>
+                <ListView
+            dataSource={this.dataSource.cloneWithRows(this.state.data)}
+            enableEmptySections={true}
+            stickyHeaderIndices={[10]}
+            initialListSize={0}
+            contentContainerStyle={styles.list}
+            scrollEnabled={true}
+            pageSize={2}
+            column={2}
+            renderRow={ (rowData, sectionID, rowID, highlightRow)=> (
+            <View numberOfLines={1} style={{backgroundColor:'transparent', justifyContent:'center', alignItems:'center'}}>
+              <View style={{marginTop:10, alignItems:'center'}}>
+              <TouchableOpacity onPress={() => {Actions.reszletesnezet({ data: rowData})}}>
+              <View style={{backgroundColor:"white", width:width-40, height:height/10, borderRadius:10, flexDirection:'row', alignItems:'center'}}>
+              <Image
+                  source={require("../src/images/police-station.png")}
+                  style={{width:height/15, height:height/15, marginLeft:10, zIndex:100, borderRadius:10}}/>
+                <Text numberOfLines={2} style={[styles.cim, {color:'#17776f', marginLeft:5, width:width/1.5, paddingTop:2, paddingBottom:2, textAlign:'center', fontSize:height/45}]}>
+                  {rowData.Név}
+                </Text>
+              </View>
+              </TouchableOpacity>
+
+              </View>
+              </View>
+              )}>
+          </ListView>
+              <View style={{height:100}}/>
+
+        </ScrollView> 
           </View>
         </View>
       </View>

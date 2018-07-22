@@ -26,7 +26,7 @@ import SendSMS from 'react-native-sms'
 import call from "react-native-phone-call";
 var currentcity = ""
 const args = {
-  number: "123456", // String value with the number to call
+  number: "112", // String value with the number to call
   prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call
 };
 
@@ -39,6 +39,21 @@ export default class Home extends Component {
       interval: 0
     };
     this.gps();
+    this.load();
+  }
+
+  load(){
+    AsyncStorage.getItem("teloszam").then(result => {
+      var results = JSON.parse(result);
+      if (results != null) {
+        console.log(results);
+        this.setState({
+          number1: results.number1,
+          number2: results.number2,
+          number3: results.number3,
+        })
+      }
+  })
   }
 
   componentDidMount() {}
@@ -47,6 +62,7 @@ export default class Home extends Component {
     console.log("rerender");
     if (this.state.currentcity) {
       return (
+       
         <View
           style={{
             height: 40,
@@ -59,10 +75,11 @@ export default class Home extends Component {
             borderRadius:10,
             position: "absolute",
             top: height / 9,
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
-          <Text style={{ color: "white", fontSize: 14 }}>
+         
+          <Text numberOfLines={1} style={{ color: "white", textAlign:'center', width:width-30, fontSize: 14 }}>
             {this.state.currentcity}
           </Text>
           <Text style={{ color: "white", fontSize: 12 }}>{" közelében"}</Text>
@@ -79,7 +96,13 @@ export default class Home extends Component {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+        this.setState({
+
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }) 
         console.log(current);
+        console.log(this.state);
 
         Geocoder.geocodePosition(current)
           .then(res => {
@@ -93,7 +116,7 @@ export default class Home extends Component {
             })
           .catch(err => console.log(err));
       },
-      error => {console.log(error.message),this.gps()} ,
+      error => {console.log(error.message), this.gps()} ,
       { enableHighAccuracy: true, distanceFilter: 1, timeout: 1000 }
     );
   
@@ -141,6 +164,10 @@ export default class Home extends Component {
   handleLogout() {
     console.log("User logged out");
   }
+  componentWillReceiveProps(){
+    this.gps();
+    console.log("izé")
+  }
   makerImage() {
     if (this.state.makerPress) {
       return require("../src/images/buttons/maker_in.png");
@@ -178,10 +205,49 @@ export default class Home extends Component {
   }
 
   sms(){
+    var long = this.state.lng;
+    var lat = this.state.lat;
+    if (this.state.number1 == undefined){
+      this.setState({number1: ""})
+    }
+    if (this.state.number2 == undefined){
+      this.setState({number2: ""})
+    }
+    if (this.state.number3 == undefined){
+      this.setState({number3: ""})
+    }
+    var number1 = this.state.number1;
+    var number2 = this.state.number2;
+    var number3 = this.state.number3;
+
+    if(number1 && number2 && number3){
+      var data = [number1, number2, number3]
+    } 
+    if(number1 && number2 && number3 == ""){
+      var data = [number1, number2]
+    }
+    if(number1 && number3 && number2 == ""){
+      var data = [number1, number3]
+    }
+    if(number2 && number3 && number2 == ""){
+      var data = [number2, number3]
+    }
+
+    if(number2 && number1 == "" && number3 == ""){
+      var data = [number2]
+    }
+    if(number3 && number1 == "" && number2 == ""){
+      var data = [number3]
+    }
+    if(number1 && number2 == "" && number3 == ""){
+      var data = [number1]
+    }
+
+
 
   SendSMS.send({
-    body: 'The default body of the SMS!',
-    recipients: ['0123456789', '9876543210'],
+    body: 'A pozicióm:'+lat+"; "+long,
+    recipients: data,
     successTypes: ['sent', 'queued']
   }, (completed, cancelled, error) => {
 
@@ -205,32 +271,77 @@ export default class Home extends Component {
             <View style={styles.modalContainer}>
               <View
                 style={{
-                  justifyContent: "center",
+                  justifyContent: "space-between",
                   flex: 1,
                   alignItems: "center"
                 }}
               >
                 <View
                   style={{
-                    flexDirection: "row",
                     justifyContent: "space-around",
                     alignItems: "center",
-                    padding: 10
+                    padding: 10,
+                    marginTop:height/20
                   }}
                 >
                   <Text
                     style={{
                       color: "black",
-                      fontSize: 20,
-                      textAlign: "center"
+                      fontSize: height/25,
+                      fontWeight:'bold',
+                      textAlign: "center",
+                      marginBottom:height/10
                     }}
                   >
-                    {"Mikor hívja a 112-t? Minden olyan esetben, amikor emberi élet forog kockán, vagy esélyét érzékeli annak, hogy baj lehet (balesetet látott, tűzesetet észlel, vagy például betörést feltételez). Mindig fontolja meg, hogy indít-e hívást, ugyanakkor ne habozzon, ha érzi, hogy szükséges! "}
+                    {"Mikor hívd a 112-t?"}
+                  </Text>
+                  <View
+                  style={{
+                    backgroundColor:'#DB3148',
+                    borderRadius:20,
+                    padding: 20,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "white",
+                      fontSize: height/35,
+                      textAlign: "left"
+                    }}
+                  >
+                    {"Minden olyan esetben, amikor emberi élet forog kockán, vagy esélyét érzékeled annak, hogy baj lehet (balesetet látott, tűzesetet észlel, vagy például betörést feltételez). Mindig fontold meg, hogy indítasz-e hívást, ugyanakkor ne habozz, ha érzed, hogy szükséges! "}
+                    
                   </Text>
                 </View>
+                </View>
               </View>
+              <View style={{flexDirection:'row', justifyContent:'space-around',marginBottom:10}}>
+              <TouchableOpacity
+                  onPress={() => {
+                    this.sms();
+                    this.gps();
+                  }}
+                >
+                  <View 
+                    style={[styles.modalButton, { backgroundColor: "white", marginRight:5, borderWidth:1, borderColor:"#DB3148" }]}>
+                  <Text style={{ color: "#DB3148", textAlign:'center', fontSize:width/25 }}>{"Helyzetem küldése"}</Text>
+                  </View>
+                </TouchableOpacity>
+              <TouchableOpacity
+                  onPress={() => {
+                    call(args).catch(console.log);
+                  }}
+                >
+                  <View
+                   style={[styles.modalButton, {}]}>
+                    <Text style={{ color: "white", fontSize:width/25, marginLeft:5 }}>{"Segélyhívás"}</Text>
+                  </View>
+                </TouchableOpacity>
+                
+              </View>
+
               <View
-                style={{ flexDirection: "row", justifyContent: "space-around" }}
+                style={{ flexDirection: "row", justifyContent: "space-around", marginBottom:5 }}
               >
                 <TouchableOpacity
                   onPress={() => {
@@ -238,19 +349,9 @@ export default class Home extends Component {
                   }}
                 >
                   <View
-                    style={[styles.modalButton, { backgroundColor: "white" }]}
+                    style={[styles.modalButton, { backgroundColor: "white", borderWidth:1, borderColor:"black" }]}
                   >
                     <Text style={{ color: "black", fontSize:20 }}>{"Mégse"}</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    this.sms(),
-                    call(args).catch(console.log);
-                  }}
-                >
-                  <View style={styles.modalButton}>
-                    <Text style={{ color: "white", fontSize:width/18 }}>{"Segélyhívás!"}</Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -291,7 +392,9 @@ export default class Home extends Component {
             resizeMode="stretch"
           />
           {this.gpsRender()}
+
           <View style={{ flex: 1, justifyContent: "center" }}>
+          
             <View
               style={{
                 flexDirection: "row",
@@ -319,7 +422,8 @@ export default class Home extends Component {
                     color: "white",
                     textAlign: "center",
                     fontWeight: "bold",
-                    marginTop: 0
+                    marginTop: 2,
+                    fontSize: height/50
                   }}
                 >
                   {"HOL"}
@@ -329,7 +433,8 @@ export default class Home extends Component {
                     color: "white",
                     textAlign: "center",
                     fontWeight: "bold",
-                    marginTop: 0
+                    marginTop: 2,
+                    fontSize: height/50
                   }}
                 >
                   {"TALÁLHATÓ?"}
@@ -356,7 +461,8 @@ export default class Home extends Component {
                     color: "white",
                     textAlign: "center",
                     fontWeight: "bold",
-                    marginTop: 0
+                    marginTop: 2,
+                    fontSize: height/50
                   }}
                 >
                   {"MI TÖRTÉNT?"}
@@ -389,7 +495,8 @@ export default class Home extends Component {
                     color: "white",
                     textAlign: "center",
                     fontWeight: "bold",
-                    marginTop: 0
+                    marginTop: 2,
+                    fontSize: height/50
                   }}
                 >
                   {"SEGÉLYHÍVÁS"}
@@ -423,7 +530,8 @@ export default class Home extends Component {
                     color: "white",
                     textAlign: "center",
                     fontWeight: "bold",
-                    marginTop: 0
+                    marginTop: 2,
+                    fontSize: height/50
                   }}
                 >
                   {"HOVÁ"}
@@ -433,7 +541,8 @@ export default class Home extends Component {
                     color: "white",
                     textAlign: "center",
                     fontWeight: "bold",
-                    marginTop: 0
+                    marginTop: 2,
+                    fontSize: height/50
                   }}
                 >
                   {"FORDULHATOK?"}
@@ -460,7 +569,8 @@ export default class Home extends Component {
                     color: "white",
                     textAlign: "center",
                     fontWeight: "bold",
-                    marginTop: 0
+                    marginTop: 2,
+                    fontSize: height/50
                   }}
                 >
                   {"JÁTÉK"}
@@ -480,22 +590,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     flex: 1,
-    backgroundColor: "rgba(255, 0, 0, 0.8)"
+    backgroundColor: "rgba(255, 0, 0, 0.6)"
   },
 
   modalContainer: {
     height: height -50,
     borderRadius: 10,
-    width: width-50,
+    width: width-40,
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "space-between"
   },
   modalButton: {
-    height: height/5,
-    backgroundColor: "red",
-    borderRadius: 10,
-    width: width /2-25,
+    height: height/10,
+    backgroundColor: "#DB3148",
+    borderRadius: 20,
+    width: width /3,
     justifyContent: "center",
     alignItems: "center"
   }

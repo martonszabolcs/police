@@ -49,11 +49,20 @@ export default class Head extends Component {
     if(this.state.scene == "what"){
       return(
         <View style={{justifyContent:'center', alignItems:'center', height:height/9}}>
-        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        <Text style={{color:'white', fontSize:height/40, fontWeight:"bold"}}>
         MI
         </Text>
-        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        <Text style={{color:'white', fontSize:height/40, fontWeight:"bold"}}>
         TÖRTÉNT?
+        </Text>
+        </View>
+        )
+    }
+    if(this.state.scene == "settings"){
+      return(
+        <View style={{justifyContent:'center', alignItems:'center', height:height/9}}>
+        <Text style={{color:'white', fontSize:height/40, fontWeight:"bold"}}>
+        BEÁLLÍTÁSOK
         </Text>
         </View>
         )
@@ -61,10 +70,10 @@ export default class Head extends Component {
     if(this.state.scene == "where"){
       return(
         <View style={{justifyContent:'center', alignItems:'center', height:height/9}}>
-        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        <Text style={{color:'white', fontSize:height/40, fontWeight:"bold"}}>
         HOVÁ
         </Text>
-        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        <Text style={{color:'white', fontSize:height/40, fontWeight:"bold"}}>
         FORDULHATOK?
         </Text>
         </View>
@@ -73,9 +82,7 @@ export default class Head extends Component {
     if(this.state.scene == "game"){
       return(
         <View style={{justifyContent:'center', alignItems:'center', height:height/9}}>
-        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
-        </Text>
-        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        <Text style={{color:'white', fontSize:height/40, fontWeight:"bold"}}>
         JÁTÉK
         </Text>
         </View>
@@ -84,10 +91,10 @@ export default class Head extends Component {
     if(this.state.scene == "marker"){
       return(
         <View style={{justifyContent:'center', alignItems:'center', height:height/9}}>
-        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        <Text style={{color:'white', fontSize:height/40, fontWeight:"bold"}}>
          HOL
         </Text>
-        <Text style={{color:'white', fontSize:20, fontWeight:"bold"}}>
+        <Text style={{color:'white', fontSize:height/40, fontWeight:"bold"}}>
         TALÁLHATÓ?
         </Text>
         </View>
@@ -100,28 +107,145 @@ export default class Head extends Component {
     if (this.state.scene == "home"){
       return(
         <View style={{flexDirection:'row'}}>
-        <TouchableOpacity onPress={(() => {Actions.pop() })}>
+        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 500); Actions.settings(); })}>
       <View style={{width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'space-around'}}>
 
         <Image
         resizeMode="stretch"
-        style={{ width: width / 10, height: width / 10 }}
+        style={{ width: height / 20, height: height / 20 }}
         source={require("../../src/images/settings.png")}
       />
       </View>
       </TouchableOpacity>
       <Image
         resizeMode="stretch"
-        style={{ width: width / 5, height: width / 5, marginLeft:20}}
+        style={{ width: height / 10, height: height / 10, marginLeft:20}}
         source={require("../../src/images/police-car.png")}
       />
         </View>
 
-      )
-    } else {
+      )}
+       if (this.state.scene == "settings"){
+      return(
+        <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
+        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
+      <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
+
+        <Image
+        resizeMode="stretch"
+        style={{ width: width / 9, height: width / 9 }}
+        source={require("../../src/images/back.png")}
+      />
+      </View>
+      </TouchableOpacity>
+      <Image
+        resizeMode="stretch"
+        style={{ width: height/10, height: height/10, marginRight:20 }}
+        source={require("../../src/images/police.png")}
+      />
+      <View style={{width:width/10, height:width/10}}/>
+      </View>
+      )}
+      if (this.state.scene == "reszletes"){
+      return(
+        <View style={{width:width, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'center'}}>
+        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.pop(); })}>
+      
+      </TouchableOpacity>
+      <Image
+        resizeMode="stretch"
+        style={{ width: height/10, height: height/10 }}
+        source={require("../../src/images/police.png")}
+      />
+      </View>
+      )}
+      if (this.state.scene == "reszletesWhere"){
+      return(
+        <View style={{width:width, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'center'}}>
+        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.pop(); })}>
+      
+      </TouchableOpacity>
+      <Image
+        resizeMode="stretch"
+        style={{ width: height/10, height: height/10 }}
+        source={require("../../src/images/house.png")}
+      />
+      </View>
+      )}
+
+      if (this.state.scene == "marker"){
       return(
       <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
-      <TouchableOpacity onPress={(() => {Actions.pop() })}>
+        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
+      <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
+
+        <Image
+        resizeMode="stretch"
+        style={{ width: width / 9, height: width / 9 }}
+        source={require("../../src/images/back.png")}
+      />
+      </View>
+      </TouchableOpacity>
+      <Image
+        resizeMode="stretch"
+        style={{ width: height/10, height: height/10, marginRight:20 }}
+        source={require("../../src/images/policeman.png")}
+      />
+      <View style={{width:width/10, height:width/10}}/>
+      </View>
+
+      )
+    }
+    if (this.state.scene == "where"){
+      return(
+      <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
+        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
+      <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
+
+        <Image
+        resizeMode="stretch"
+        style={{ width: width / 9, height: width / 9 }}
+        source={require("../../src/images/back.png")}
+      />
+      </View>
+      </TouchableOpacity>
+      <Image
+        resizeMode="stretch"
+        style={{ width: height/10, height: height/10, marginRight:20 }}
+        source={require("../../src/images/boy.png")}
+      />
+      <View style={{width:width/10, height:width/10}}/>
+      </View>
+
+      )
+    }
+    if (this.state.scene == "what"){
+      return(
+      <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
+        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
+      <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
+
+        <Image
+        resizeMode="stretch"
+        style={{ width: width / 9, height: width / 9 }}
+        source={require("../../src/images/back.png")}
+      />
+      </View>
+      </TouchableOpacity>
+      <Image
+        resizeMode="stretch"
+        style={{ width: height/10, height: height/10, marginRight:20 }}
+        source={require("../../src/images/policeman.png")}
+      />
+      <View style={{width:width/10, height:width/10}}/>
+      </View>
+
+      )
+    }
+    if (this.state.scene == "game"){
+      return(
+      <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
+        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
       <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
 
         <Image
@@ -144,6 +268,16 @@ export default class Head extends Component {
   }
 
   render() {
+    if (this.state.scene == "reszletes" || this.state.scene == "reszletesWhere"){
+
+    return (
+      <View style={styles.container}>
+      <View style={{width:width, justifyContent:'center', backgroundColor:'transparent', alignItems:'center'}}>
+        {this.pop()}
+      </View>
+      </View>
+    );
+  } else {
     return (
       <View style={styles.container}>
       <View style={{width:width/1.8, justifyContent:'center', backgroundColor:'transparent', alignItems:'center'}}>
@@ -154,6 +288,7 @@ export default class Head extends Component {
       </View>
       </View>
     );
+  }
   }
 }
 

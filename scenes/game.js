@@ -76,7 +76,7 @@ export default class Home extends Component {
       <View style={{ backgroundColor: "black", flex: 1 }}>
         <View
           style={{
-            backgroundColor: "#74B9FF",
+            backgroundColor: "#1A86E0",
             paddingBottom: 0,
             borderRadius: 10,
             flex: 1,
@@ -87,15 +87,15 @@ export default class Home extends Component {
         >
           <Head scene="game"/>
   
-          <View style={{ flex: 1, justifyContent:'center'}}>
-          <View style={{ marginTop: height/20, marginBottom:height/20, borderRadius:20, flex: 1, justifyContent:'space-around',
-                backgroundColor:'white'
-        }}>
-          <View
+          <View style={{ flex: 1, justifyContent:'center', margin:20}}>
+         
+         <View
               style={{
                 flexDirection: "row",
-                justifyContent: "space-around",
-                marginTop: height / 20,
+                justifyContent: "flex-end",
+                alignItems:'flex-end',
+                marginTop: 10,
+
               }}
             >
               <TouchableOpacity
@@ -111,23 +111,22 @@ export default class Home extends Component {
                 
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 2.5, height: width / 2.5 , justifyContent:'center', alignItems:'center', borderRadius:20}}
+                  style={{ width: width / 2.2, height: width / 2.2 , justifyContent:'center', alignItems:'center', borderRadius:20}}
                   source={require("../src/images/megfigyeles.png")}
                 />
 
-                <Text
-                  style={{
-                    color: "#1A86E0",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    marginTop: 0
-                  }}
-                >
-                  {"Megfigyelés Játék"}
-                </Text>
+                
                
               </TouchableOpacity>
+              </View>
 
+            <View
+              style={{
+                flexDirection: "row",
+                top: -height/20
+
+              }}
+            >
               <TouchableOpacity
                 
                 onPressIn={() => {
@@ -140,29 +139,20 @@ export default class Home extends Component {
                
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 2.5, height: width / 2.5 , justifyContent:'center', alignItems:'center', borderRadius:20}}
+                  style={{ width: width / 2.2, height: width / 2.2 , justifyContent:'center', alignItems:'center', borderRadius:20}}
                   source={this.whatImage()}
                 />
-
-                <Text
-                  style={{
-                    color: "#1A86E0",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    marginTop: 0
-                  }}
-                >
-                  {"MI HIÁNYZIK?"}
-                </Text>
+                
 
               </TouchableOpacity>
-            </View>
+              </View>
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "center",
-                alignItems:'center',
+                justifyContent: "flex-end",
+                alignItems:'flex-end',
                 marginTop: 10,
+                top:-height/10
 
               }}
             >
@@ -177,26 +167,16 @@ export default class Home extends Component {
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 2.5, height: width / 2.5 }}
+                  style={{ width: width / 2.2, height: width / 2.2 }}
                   source={this.sosImage()}
                 />
-                <Text
-                  style={{
-                    color: "#1A86E0",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    marginTop: 0
-                  }}
-                >
-                  {"Nemzetiség"}
-                </Text>
+                
 
               </TouchableOpacity>
             </View>
             </View>
           </View>
         </View>
-      </View>
     );
   }
 }

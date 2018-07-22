@@ -93,11 +93,22 @@ export default class Home extends Component {
               style={{
                 flexDirection: "row",
                 justifyContent: "flex-end",
-                alignItems:'flex-end',
+                alignItems:'center',
                 marginTop: 10,
 
               }}
             >
+             <Text
+                    style={{
+                      color: "white",
+                      fontSize: height/40,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginRight: 10
+                    }}
+                  >
+                    {"Figyeld meg!"}
+                  </Text>
               <TouchableOpacity
                 
                 onPressIn={() => {
@@ -105,9 +116,11 @@ export default class Home extends Component {
                 }}
                 onPressOut={() => {
                   this.setState({ makerPress: false });
-                  Actions.gameOf();
+                  //Actions.gameOf();
                 }}
               >
+
+             
                 
                 <Image
                   resizeMode="stretch"
@@ -123,7 +136,8 @@ export default class Home extends Component {
             <View
               style={{
                 flexDirection: "row",
-                top: -height/20
+                top: -height/20,
+                alignItems:'center',
 
               }}
             >
@@ -145,21 +159,43 @@ export default class Home extends Component {
                 
 
               </TouchableOpacity>
+              <Text
+                    style={{
+                      color: "white",
+                      fontSize: height/40,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginLeft: 10
+                    }}
+                  >
+                    {"Mi hiányzik?"}
+                  </Text>
               </View>
             <View
               style={{
                 flexDirection: "row",
                 justifyContent: "flex-end",
-                alignItems:'flex-end',
+                alignItems:'center',
                 marginTop: 10,
                 top:-height/10
 
               }}
             >
+             <Text
+                    style={{
+                      color: "white",
+                      fontSize: height/40,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginRight: 10
+                    }}
+                  >
+                    {"Egyenruhák"}
+                  </Text>
               <TouchableOpacity
                 
                 onPressIn={() => {
-                  this.setState({ sosPress: true });
+                  Actions.gameEgyenruhak();
                 }}
                 onPressOut={() => {
                   this.setState({ sosPress: false });

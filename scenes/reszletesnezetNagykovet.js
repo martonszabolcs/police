@@ -90,7 +90,7 @@ export default class Home extends Component {
         <TouchableOpacity
                   onPress={() => {
                     const args = {
-          number: this.state.infos.Telefoszám, // String value with the number to call
+          number: this.state.infos.Telefon, // String value with the number to call
           prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call
           };
                     console.log(args)

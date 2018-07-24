@@ -40,6 +40,7 @@ export default class Home extends Component {
     };
     this.gps();
     this.load();
+    console.log('contructor')
   }
 
   load(){
@@ -125,18 +126,18 @@ export default class Home extends Component {
             })
           .catch(err => console.log(err));
       },
-      error => {console.log(error.message), this.gps()} ,
+      error => {console.log(error.message)} ,
       { enableHighAccuracy: true, distanceFilter: 1, timeout: 1000 }
     );
   
-      this._interval = setInterval(() => {
-      if (currentcity != ""){
-        clearInterval(this._interval)
+setTimeout(() =>{
+
+   if (currentcity != ""){
         this.setState({
           currentcity:currentcity,
         })
       }
-    },1)
+    },1000)
   }
 
   componentWillMount() {}

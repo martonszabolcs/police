@@ -45,7 +45,6 @@ export default class Flux extends Component {
   }
 
   componentDidMount() {
-    Actions.reset("home");
     /*if (Platform.OS === "android") {
       SplashScreen.close({
         animationType: SplashScreen.animationType.scale,

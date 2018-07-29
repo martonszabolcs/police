@@ -31,18 +31,13 @@ export default class Head extends Component {
       scene: this.props.scene
     };
   }
-  componentWillMount(){
-    console.log(this.state.scene)
-    this.setState({
-      scene: this.props.scene
-    })
-  }
+  
   change(){
     if(this.state.scene == "home"){
       return(
         <Image
           source={require('../images/logo.png')}
-          style={{height:height/9-10, width:width/2.3-10}}
+          style={{height:height/9-3, width:width/2.3-3}}
           resizeMode = 'cover'
         />)
     }
@@ -107,7 +102,7 @@ export default class Head extends Component {
     if (this.state.scene == "home"){
       return(
         <View style={{flexDirection:'row'}}>
-        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 500); Actions.settings(); })}>
+        <TouchableOpacity onPress={(() => { Actions.settings(); })}>
       <View style={{width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'space-around'}}>
 
         <Image
@@ -128,7 +123,7 @@ export default class Head extends Component {
        if (this.state.scene == "settings"){
       return(
         <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
-        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
+        <TouchableOpacity onPress={(() => { Actions.home(); })}>
       <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
 
         <Image
@@ -149,7 +144,7 @@ export default class Head extends Component {
       if (this.state.scene == "reszletes"){
       return(
         <View style={{width:width, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'center'}}>
-        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.pop(); })}>
+        <TouchableOpacity onPress={(() => {Actions.pop(); })}>
       
       </TouchableOpacity>
       <Image
@@ -162,7 +157,7 @@ export default class Head extends Component {
       if (this.state.scene == "reszletesWhere"){
       return(
         <View style={{width:width, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'center'}}>
-        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.pop(); })}>
+        <TouchableOpacity onPress={(() => { Actions.pop(); })}>
       
       </TouchableOpacity>
       <Image
@@ -176,7 +171,7 @@ export default class Head extends Component {
       if (this.state.scene == "marker"){
       return(
       <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
-        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
+        <TouchableOpacity onPress={(() => {Actions.home(); })}>
       <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
 
         <Image
@@ -199,7 +194,7 @@ export default class Head extends Component {
     if (this.state.scene == "where"){
       return(
       <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
-        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
+        <TouchableOpacity onPress={(() => { Actions.home(); })}>
       <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
 
         <Image
@@ -222,7 +217,7 @@ export default class Head extends Component {
     if (this.state.scene == "what"){
       return(
       <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
-        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
+        <TouchableOpacity onPress={(() => { Actions.home(); })}>
       <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
 
         <Image
@@ -245,7 +240,7 @@ export default class Head extends Component {
     if (this.state.scene == "game"){
       return(
       <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
-        <TouchableOpacity onPress={(() => {setTimeout(()=> {Actions.refresh({refresh: true})}, 100); Actions.home(); })}>
+        <TouchableOpacity onPress={(() => { Actions.home(); })}>
       <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
 
         <Image

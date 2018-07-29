@@ -16,7 +16,8 @@ import {
   BackHandler,
   Alert,
   AsyncStorage,
-  ImageBackground
+  ImageBackground,
+  Linking
 } from "react-native";
 //import SplashScreen from 'react-native-splash-screen'
 
@@ -71,6 +72,16 @@ export default class Home extends Component {
     }
   }
 
+  linking(){
+    if (Platform.OS == "android"){
+      Linking.openURL("https://play.google.com/store/apps/details?id=com.attrecto.nbt&hl=hu").catch(err => console.error('An error occurred', err));
+
+    } else {
+      Linking.openURL("https://itunes.apple.com/hu/app/h%C3%A1z%C5%91rz%C5%91/id1172215929?mt=8").catch(err => console.error('An error occurred', err));
+
+    }
+  }
+
   render() {
     return (
       <View style={{ backgroundColor: "black", flex: 1 }}>
@@ -89,6 +100,7 @@ export default class Home extends Component {
   
           <View style={{ flex: 1, justifyContent:'center', margin:20}}>
          
+         <ScrollView>
          <View
               style={{
                 flexDirection: "row",
@@ -116,7 +128,7 @@ export default class Home extends Component {
                 }}
                 onPressOut={() => {
                   this.setState({ makerPress: false });
-                  //Actions.gameOf();
+                  Actions.gameMegfigyeles();
                 }}
               >
 
@@ -148,6 +160,7 @@ export default class Home extends Component {
                 }}
                 onPressOut={() => {
                   this.setState({ whatPress: false });
+                  Actions.gameMihianyzik();
                 }}
               >
                
@@ -193,12 +206,10 @@ export default class Home extends Component {
                     {"Egyenruhák"}
                   </Text>
               <TouchableOpacity
-                
-                onPressIn={() => {
-                  Actions.gameEgyenruhak();
-                }}
-                onPressOut={() => {
+                onPress={() => {
                   this.setState({ sosPress: false });
+                  Actions.gameEgyenruhak();
+
                 }}
               >
                 <Image
@@ -210,6 +221,52 @@ export default class Home extends Component {
 
               </TouchableOpacity>
             </View>
+             <View
+              style={{
+                flexDirection: "column",
+                top: -height/20,
+                backgroundColor:'#74B9FF',
+                borderRadius:10,
+                padding:20,
+                alignItems:'center',
+
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                flexDirection: "column",
+                  backgroundColor:'#74B9FF',
+                alignItems:'center',
+
+              }}
+                onPress={() => {
+                  this.linking();
+                }}
+                
+              >
+               
+                <Image
+                  resizeMode="stretch"
+                  style={{ width: width / 2.2, height: width / 2.2 , justifyContent:'center', alignItems:'center', borderRadius:20}}
+                  source={require('../src/images/hazorzo.png')}
+                />
+                
+
+              <Text
+                    style={{
+                      color: "white",
+                      fontSize: height/40,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginLeft: 10
+                    }}
+                  >
+                    {"Hasonlóan izgalmas bűnmegelőzési játék letöltéséhez kattints ide"}
+                  </Text>
+              </TouchableOpacity>
+
+              </View>
+              </ScrollView>
             </View>
           </View>
         </View>

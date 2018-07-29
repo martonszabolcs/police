@@ -127,7 +127,7 @@ export default class What extends Component {
           <Head scene="what"/>
   
           <View style={{ flex: 1, justifyContent:'center'}}>
-          <ScrollView style={{backgroundColor:'transparent'}}>
+          <ScrollView removeClippedSubviews={true} style={{backgroundColor:'transparent'}}>
                 <ListView
             dataSource={this.dataSource.cloneWithRows(this.state.data)}
             enableEmptySections={true}

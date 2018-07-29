@@ -65,19 +65,7 @@ export default class GameEgyenruha extends Component {
                 marginTop: height / 20
               }}
             >
-              <Image
-                resizeMode="stretch"
-                style={{
-                  width: height / 3,
-                  height: height / 3,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 20
-                }}
-                source={require("../src/images/Egyenruhak/Chile.jpg")}
-              />
-
-              <Text
+            <Text
                 style={{
                   color: "black",
                   fontSize: 20,
@@ -87,12 +75,22 @@ export default class GameEgyenruha extends Component {
                   marginTop: 10
                 }}
               >
-                {"Melyik ország egyenruhája?"}
+                {"Figyeld meg a képet!"}
+              
               </Text>
-            </View>
-            <View style={{ flex: 1, alignItems: "center" }}>
+              <Image
+                resizeMode="stretch"
+                style={{
+                  width: height / 2,
+                  height: height / 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 20
+                }}
+                source={require("../src/images/Megfigyeles/Fagyi.jpg")}
+              />
               <TouchableOpacity
-                onPress={() => this.setState({elsoRossz:1, tovabb:2})}
+                onPress={() => this.setState({tovabb:2})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -115,69 +113,17 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Kanada"}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.setState({elsoRossz:1, tovabb:2})}
-                underlayColor="hsla(360, 100%, 100%, 1.0)"
-              >
-                <View
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: 20,
-                    width: width - 50,
-                    height: 40,
-                    marginTop:10,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "black",
-                      fontSize: 20,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      marginTop: 0
-                    }}
-                  >
-                    {"USA"}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.setState({elsojo:1, tovabb:2})}
-                underlayColor="hsla(360, 100%, 100%, 1.0)"
-              >
-                <View
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: 20,
-                    width: width - 50,
-                    height: 40,
-                    marginTop:10,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "black",
-                      fontSize: 20,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      marginTop: 0
-                    }}
-                  >
-                    {"Chile"}
+                    {"Megfigyeltem"}
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
+            
+            
           </View>)
-    }
+    } 
+
+
     if (this.state.tovabb == 2){
       return(
         <View style={{ flex: 1 }}>
@@ -188,18 +134,6 @@ export default class GameEgyenruha extends Component {
                 marginTop: height / 20
               }}
             >
-              <Image
-                resizeMode="stretch"
-                style={{
-                  width: height / 3,
-                  height: height / 3,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 20
-                }}
-                source={require("../src/images/Egyenruhak/Irak.jpg")}
-              />
-
               <Text
                 style={{
                   color: "black",
@@ -210,12 +144,12 @@ export default class GameEgyenruha extends Component {
                   marginTop: 10
                 }}
               >
-                {"Melyik ország egyenruhája?"}
+                {"Az idős úr milyen édességet fogyaszt? "}
               </Text>
             </View>
-            <View style={{ flex: 1, alignItems: "center"}}>
+            <View style={{ flex: 1, alignItems: "center" }}>
               <TouchableOpacity
-                onPress={() => this.setState({masodikRossz:1, tovabb:3})}
+                onPress={() => this.setState({elsoRossz:1, tovabb:3})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -238,12 +172,12 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Ausztria"}
+                    {"Fánkot"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({masodikjo:1, tovabb:3})}
+                onPress={() => this.setState({elsoRossz:1, tovabb:3})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -266,12 +200,12 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Irak"}
+                    {"Perecet"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({masodikRossz:1, tovabb:3})}
+                onPress={() => this.setState({elsojo:1, tovabb:3})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -294,7 +228,7 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"India"}
+                    {"Fagyit"}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -311,19 +245,7 @@ export default class GameEgyenruha extends Component {
                 marginTop: height / 20
               }}
             >
-              <Image
-                resizeMode="stretch"
-                style={{
-                  width: height / 3,
-                  height: height / 3,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 20
-                }}
-                source={require("../src/images/Egyenruhak/Japan.jpg")}
-              />
-
-              <Text
+            <Text
                 style={{
                   color: "black",
                   fontSize: 20,
@@ -333,12 +255,21 @@ export default class GameEgyenruha extends Component {
                   marginTop: 10
                 }}
               >
-                {"Melyik ország egyenruhája?"}
+                {"Figyeld meg a képet!"}
               </Text>
-            </View>
-            <View style={{ flex: 1, alignItems: "center"}}>
+              <Image
+                resizeMode="stretch"
+                style={{
+                  width: height / 2,
+                  height: height / 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 20
+                }}
+                source={require("../src/images/Megfigyeles/Tuzcsap.jpg")}
+              />
               <TouchableOpacity
-                onPress={() => this.setState({harmadikRossz:1, tovabb:4})}
+                onPress={() => this.setState({tovabb:4})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -361,69 +292,13 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"USA"}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.setState({harmadikjo:1, tovabb:4})}
-                underlayColor="hsla(360, 100%, 100%, 1.0)"
-              >
-                <View
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: 20,
-                    width: width - 50,
-                    height: 40,
-                    marginTop:10,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "black",
-                      fontSize: 20,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      marginTop: 0
-                    }}
-                  >
-                    {"Japán"}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.setState({harmadikRossz:1, tovabb:4})}
-                underlayColor="hsla(360, 100%, 100%, 1.0)"
-              >
-                <View
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: 20,
-                    width: width - 50,
-                    height: 40,
-                    marginTop:10,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "black",
-                      fontSize: 20,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      marginTop: 0
-                    }}
-                  >
-                    {"Magyarország"}
+                    {"Megfigyeltem"}
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
           </View>)
-    }
+    } 
     if (this.state.tovabb == 4){
       return(
         <View style={{ flex: 1 }}>
@@ -434,18 +309,6 @@ export default class GameEgyenruha extends Component {
                 marginTop: height / 20
               }}
             >
-              <Image
-                resizeMode="stretch"
-                style={{
-                  width: height / 3,
-                  height: height / 3,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 20
-                }}
-                source={require("../src/images/Egyenruhak/Kina.jpg")}
-              />
-
               <Text
                 style={{
                   color: "black",
@@ -456,12 +319,13 @@ export default class GameEgyenruha extends Component {
                   marginTop: 10
                 }}
               >
-                {"Melyik ország egyenruhája?"}
+                {"Milyen színű a tűzcsap a képen? "}
+
               </Text>
             </View>
             <View style={{ flex: 1, alignItems: "center"}}>
               <TouchableOpacity
-                onPress={() => this.setState({negyedikjo:1, tovabb:5})}
+                onPress={() => this.setState({masodikRossz:1, tovabb:5})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -484,12 +348,12 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Kína"}
+                    {"Kék"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({negyedikRossz:1, tovabb:5})}
+                onPress={() => this.setState({masodikjo:1, tovabb:5})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -512,12 +376,12 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Ausztrália"}
+                    {"Sárga"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({negyedikRossz:1, tovabb:5})}
+                onPress={() => this.setState({masodikRossz:1, tovabb:5})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -540,7 +404,7 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Brazília"}
+                    {"Zöld"}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -557,19 +421,7 @@ export default class GameEgyenruha extends Component {
                 marginTop: height / 20
               }}
             >
-              <Image
-                resizeMode="stretch"
-                style={{
-                  width: height / 3,
-                  height: height / 3,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 20
-                }}
-                source={require("../src/images/Egyenruhak/Olaszorszag.jpg")}
-              />
-
-              <Text
+            <Text
                 style={{
                   color: "black",
                   fontSize: 20,
@@ -579,12 +431,21 @@ export default class GameEgyenruha extends Component {
                   marginTop: 10
                 }}
               >
-                {"Melyik ország egyenruhája?"}
+                {"Figyeld meg a képet!"}
               </Text>
-            </View>
-            <View style={{ flex: 1, alignItems: "center"}}>
-              <TouchableOpacity
-                onPress={() => this.setState({otodikRossz:1, tovabb:6})}
+              <Image
+                resizeMode="stretch"
+                style={{
+                  width: height / 2,
+                  height: height / 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 20
+                }}
+                source={require("../src/images/Megfigyeles/Esernyo.jpg")}
+              />
+            <TouchableOpacity
+                onPress={() => this.setState({tovabb:6})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -607,70 +468,15 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Szlovénia"}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.setState({otodikRossz:1, tovabb:6})}
-                underlayColor="hsla(360, 100%, 100%, 1.0)"
-              >
-                <View
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: 20,
-                    width: width - 50,
-                    height: 40,
-                    marginTop:10,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "black",
-                      fontSize: 20,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      marginTop: 0
-                    }}
-                  >
-                    {"Lengyelország"}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.setState({otodikjo:1, tovabb:6})}
-                underlayColor="hsla(360, 100%, 100%, 1.0)"
-              >
-                <View
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: 20,
-                    width: width - 50,
-                    height: 40,
-                    marginTop:10,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "black",
-                      fontSize: 20,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      marginTop: 0
-                    }}
-                  >
-                    {"Olaszorszag"}
+                    {"Megfigyeltem"}
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
+          
           </View>)
     }
-    if (this.state.tovabb == 6){
+     if (this.state.tovabb == 6){
       return(
         <View style={{ flex: 1 }}>
             <View
@@ -680,18 +486,6 @@ export default class GameEgyenruha extends Component {
                 marginTop: height / 20
               }}
             >
-              <Image
-                resizeMode="stretch"
-                style={{
-                  width: height / 3,
-                  height: height / 3,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 20
-                }}
-                source={require("../src/images/Egyenruhak/UK.jpg")}
-              />
-
               <Text
                 style={{
                   color: "black",
@@ -702,12 +496,12 @@ export default class GameEgyenruha extends Component {
                   marginTop: 10
                 }}
               >
-                {"Melyik ország egyenruhája?"}
+                {"A képen hol található az esernyő?"}
               </Text>
             </View>
             <View style={{ flex: 1, alignItems: "center"}}>
               <TouchableOpacity
-                onPress={() => this.setState({otodikRossz:1, tovabb:7})}
+                onPress={() => this.setState({harmadikRossz:1, tovabb:7})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -730,12 +524,12 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Németország"}
+                    {"A szék támláján lóg"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({orodikRossz:1, tovabb:7})}
+                onPress={() => this.setState({harmadikjo:1, tovabb:7})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -758,12 +552,12 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Románia"}
+                    {"Az asztalon hever"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({hatodikjo:1, tovabb:7})}
+                onPress={() => this.setState({harmadikRossz:1, tovabb:7})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -786,7 +580,7 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Anglia"}
+                   {"A hölgy karján lóg"}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -803,17 +597,71 @@ export default class GameEgyenruha extends Component {
                 marginTop: height / 20
               }}
             >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
               <Image
                 resizeMode="stretch"
                 style={{
-                  width: height / 3,
-                  height: height / 3,
+                  width: height / 2,
+                  height: height / 2,
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20
                 }}
-                source={require("../src/images/Egyenruhak/USA.jpg")}
+                source={require("../src/images/Megfigyeles/Laptop.jpg")}
               />
+
+              <TouchableOpacity
+                onPress={() => this.setState({tovabb:8})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            
+          </View>)
+    }if (this.state.tovabb == 8){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
 
               <Text
                 style={{
@@ -825,12 +673,12 @@ export default class GameEgyenruha extends Component {
                   marginTop: 10
                 }}
               >
-                {"Melyik ország egyenruhája?"}
+                {"Mit reklámoz a zenészek mögött lévő plakát?"}
               </Text>
             </View>
             <View style={{ flex: 1, alignItems: "center"}}>
               <TouchableOpacity
-                onPress={() => this.setState({hetedikjo:1, tovabb:'nincs', ertekeles:"mehet"})}
+                onPress={() => this.setState({negyedikjo:1, tovabb:9})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -853,12 +701,12 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"USA"}
+                    {"Laptopot"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({orodikRossz:1, tovabb:'nincs', ertekeles:"mehet"})}
+                onPress={() => this.setState({negyedikRossz:1, tovabb:9})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -881,12 +729,12 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Örményország"}
+                    {"Digitális kamerát"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({otodikRossz:1, tovabb:'nincs', ertekeles:"mehet"})}
+                onPress={() => this.setState({negyedikRossz:1, tovabb:9})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -909,7 +757,540 @@ export default class GameEgyenruha extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"Új-Zéland"}
+                    {"Kávéfőzőt"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>)
+    }
+    if (this.state.tovabb == 9){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
+              <Image
+                resizeMode="stretch"
+                style={{
+                  width: height / 2,
+                  height: height / 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 20
+                }}
+                source={require("../src/images/Megfigyeles/McDonalds.jpg")}
+              />
+              <TouchableOpacity
+                onPress={() => this.setState({tovabb:10})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            
+          </View>)
+    }
+    if (this.state.tovabb == 10){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
+
+              <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"A képen milyen gyorsétterem logója látható?"}
+              </Text>
+            </View>
+            <View style={{ flex: 1, alignItems: "center"}}>
+              <TouchableOpacity
+                onPress={() => this.setState({otodikRossz:1, tovabb:11})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Subway"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.setState({otodikRossz:1, tovabb:11})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Burger King"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.setState({otodikjo:1, tovabb:11})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                                        {"McDonalds"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>)
+    }
+    if (this.state.tovabb == 11){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
+              <Image
+                resizeMode="stretch"
+                style={{
+                  width: height / 2,
+                  height: height / 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 20
+                }}
+                source={require("../src/images/Megfigyeles/Asics.jpg")}
+              />
+
+               <TouchableOpacity
+                onPress={() => this.setState({tovabb:12})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+           
+          </View>)
+    }
+    if (this.state.tovabb == 12){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
+            
+              <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+               {"A városnéző busz milyen cipőt reklámoz?"}
+              </Text>
+            </View>
+            <View style={{ flex: 1, alignItems: "center"}}>
+              <TouchableOpacity
+                onPress={() => this.setState({hatodikRossz:1, tovabb:13})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Adidas"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.setState({hatodikRossz:1, tovabb:13})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Nike"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.setState({hatodikjo:1, tovabb:13})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Asics"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>)
+    }
+    if (this.state.tovabb == 13){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
+              <Image
+                resizeMode="stretch"
+                style={{
+                  width: height / 2,
+                  height: height / 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 20
+                }}
+                source={require("../src/images/Megfigyeles/Sapka.jpg")}
+              />
+
+            <TouchableOpacity
+                onPress={() => this.setState({tovabb:14})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            
+          </View>)
+    }
+    if (this.state.tovabb == 14){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
+            
+              <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+               {"Hány kislegényen van baseball-sapka?"}
+              </Text>
+            </View>
+            <View style={{ flex: 1, alignItems: "center"}}>
+              <TouchableOpacity
+                onPress={() => this.setState({hetedikRossz:1, tovabb:30, ertekeles:"mehet"})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Hármon"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.setState({hetedikRossz:1, tovabb:30, ertekeles:"mehet"})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Egyen"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.setState({hetedikjo:1, tovabb:30, ertekeles:"mehet"})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Kettőn"}
                   </Text>
                 </View>
               </TouchableOpacity>

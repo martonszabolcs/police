@@ -38,6 +38,8 @@ export default class Home extends Component {
       currentcity: "",
       interval: 0
     };
+    console.log('reset')
+    //Actions.reset('home')
     this.gps();
     this.load();
     console.log('contructor')
@@ -340,7 +342,7 @@ setTimeout(() =>{
                   <Text
                     style={{
                       color: "black",
-                      fontSize: height/40,
+                      fontSize: height/45,
                       textAlign: "left"
                     }}
                   >
@@ -433,7 +435,7 @@ setTimeout(() =>{
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3.2, height: width / 3.2 }}
+                  style={{ width: height / 6.2, height: height / 6.2 }}
                   source={this.makerImage()}
                 />
                 <Text
@@ -472,7 +474,7 @@ setTimeout(() =>{
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3.2, height: width / 3.2 }}
+                  style={{ width: height / 6.2, height: height / 6.2 }}
                   source={this.whatImage()}
                 />
                 <Text
@@ -506,7 +508,7 @@ setTimeout(() =>{
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3.2, height: width / 3.2 }}
+                  style={{ width: height / 6.2, height: height / 6.2 }}
                   source={this.sosImage()}
                 />
                 <Text
@@ -541,7 +543,7 @@ setTimeout(() =>{
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3.2, height: width / 3.2 }}
+                  style={{ width: height / 6.2, height: height / 6.2 }}
                   source={this.whereImage()}
                 />
                 <Text
@@ -580,7 +582,7 @@ setTimeout(() =>{
               >
                 <Image
                   resizeMode="stretch"
-                  style={{ width: width / 3.2, height: width / 3.2 }}
+                  style={{ width: height / 6.2, height: height / 6.2 }}
                   source={this.gameImage()}
                 />
                 <Text

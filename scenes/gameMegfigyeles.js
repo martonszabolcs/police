@@ -30,11 +30,12 @@ const args = {
   prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call
 };
 
-export default class Home extends Component {
+export default class GameEgyenruha extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalVisible: false,
+      tovabb:1,
       elsojo: "",
       elsoRossz:"",
       masodikjo: "",
@@ -52,44 +53,9 @@ export default class Home extends Component {
 
   componentWillUnmount() {}
 
-  makerImage() {
-    if (this.state.makerPress) {
-      return require("../src/images/11.png");
-    } else {
-      return require("../src/images/1.png");
-    }
-  }
-  whatImage() {
-    if (this.state.whatPress) {
-      return require("../src/images/22.png");
-    } else {
-      return require("../src/images/2.png");
-    }
-  }
-  sosImage() {
-    if (this.state.sosPress) {
-      return require("../src/images/33.png");
-    } else {
-      return require("../src/images/3.png");
-    }
-  }
-  whereImage() {
-    if (this.state.wherePress) {
-      return require("../src/images/buttons/where_in.png");
-    } else {
-      return require("../src/images/buttons/where.png");
-    }
-  }
-  gameImage() {
-    if (this.state.gamePress) {
-      return require("../src/images/buttons/game_in.png");
-    } else {
-      return require("../src/images/buttons/game.png");
-    }
-  }
 
   game(){
-    if (this.state.elsojo == ""){
+    if (this.state.tovabb == 1){
       return(
         <View style={{ flex: 1 }}>
             <View
@@ -99,18 +65,75 @@ export default class Home extends Component {
                 marginTop: height / 20
               }}
             >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              
+              </Text>
               <Image
                 resizeMode="stretch"
                 style={{
-                  width: width /1.4,
-                  height: height / 3,
+                  width: height / 2,
+                  height: height / 2,
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20
                 }}
-                source={require("../src/images/jatek1.png")}
+                source={require("../src/images/Megfigyeles/Fagyi.jpg")}
               />
+              <TouchableOpacity
+                onPress={() => this.setState({tovabb:2})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            
+            
+          </View>)
+    } 
 
+
+    if (this.state.tovabb == 2){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
               <Text
                 style={{
                   color: "black",
@@ -126,7 +149,7 @@ export default class Home extends Component {
             </View>
             <View style={{ flex: 1, alignItems: "center" }}>
               <TouchableOpacity
-                onPress={() => this.setState({elsoRossz:1})}
+                onPress={() => this.setState({elsoRossz:1, tovabb:3})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -149,12 +172,12 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"fánkot"}
+                    {"Fánkot"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({elsoRossz:1})}
+                onPress={() => this.setState({elsoRossz:1, tovabb:3})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -177,12 +200,12 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"perecet"}
+                    {"Perecet"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({elsojo:1})}
+                onPress={() => this.setState({elsojo:1, tovabb:3})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -205,14 +228,14 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"fagyit"}
+                    {"Fagyit"}
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
           </View>)
     }
-    if (this.state.masodikjo == "" && this.state.elsojo != ""){
+    if (this.state.tovabb == 3){
       return(
         <View style={{ flex: 1 }}>
             <View
@@ -222,18 +245,70 @@ export default class Home extends Component {
                 marginTop: height / 20
               }}
             >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
               <Image
                 resizeMode="stretch"
                 style={{
-                  width: width/1.4,
-                  height: height / 3,
+                  width: height / 2,
+                  height: height / 2,
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20
                 }}
-                source={require("../src/images/jatek2.png")}
+                source={require("../src/images/Megfigyeles/Tuzcsap.jpg")}
               />
-
+              <TouchableOpacity
+                onPress={() => this.setState({tovabb:4})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>)
+    } 
+    if (this.state.tovabb == 4){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
               <Text
                 style={{
                   color: "black",
@@ -244,12 +319,13 @@ export default class Home extends Component {
                   marginTop: 10
                 }}
               >
-                {"A szélvihar milyen színű a tűzcsap a képen? "}
+                {"Milyen színű a tűzcsap a képen? "}
+
               </Text>
             </View>
             <View style={{ flex: 1, alignItems: "center"}}>
               <TouchableOpacity
-                onPress={() => this.setState({masodikRossz:1})}
+                onPress={() => this.setState({masodikRossz:1, tovabb:5})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -272,12 +348,12 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"piros"}
+                    {"Kék"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({masodikjo:1})}
+                onPress={() => this.setState({masodikjo:1, tovabb:5})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -300,12 +376,12 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"sárga"}
+                    {"Sárga"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({masodikRossz:1})}
+                onPress={() => this.setState({masodikRossz:1, tovabb:5})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -328,14 +404,14 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"kék"}
+                    {"Zöld"}
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
           </View>)
     }
-    if (this.state.harmadikjo == "" && this.state.elsojo != "" && this.state.masodikjo != ""){
+    if (this.state.tovabb == 5){
       return(
         <View style={{ flex: 1 }}>
             <View
@@ -345,18 +421,71 @@ export default class Home extends Component {
                 marginTop: height / 20
               }}
             >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
               <Image
                 resizeMode="stretch"
                 style={{
-                  width: width/1.4,
-                  height: height / 3,
+                  width: height / 2,
+                  height: height / 2,
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20
                 }}
-                source={require("../src/images/jatek3.png")}
+                source={require("../src/images/Megfigyeles/Esernyo.jpg")}
               />
-
+            <TouchableOpacity
+                onPress={() => this.setState({tovabb:6})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          
+          </View>)
+    }
+     if (this.state.tovabb == 6){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
               <Text
                 style={{
                   color: "black",
@@ -367,12 +496,12 @@ export default class Home extends Component {
                   marginTop: 10
                 }}
               >
-                {"A kávézó című képen hol található az esernyő?"}
+                {"A képen hol található az esernyő?"}
               </Text>
             </View>
             <View style={{ flex: 1, alignItems: "center"}}>
               <TouchableOpacity
-                onPress={() => this.setState({harmadikRossz:1})}
+                onPress={() => this.setState({harmadikRossz:1, tovabb:7})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -400,7 +529,7 @@ export default class Home extends Component {
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({harmadikjo:1})}
+                onPress={() => this.setState({harmadikjo:1, tovabb:7})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -428,7 +557,7 @@ export default class Home extends Component {
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({harmadikRossz:1})}
+                onPress={() => this.setState({harmadikRossz:1, tovabb:7})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -451,14 +580,14 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"A hölgy karján lóg"}
+                   {"A hölgy karján lóg"}
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
           </View>)
     }
-    if (this.state.negyedikjo == "" && this.state.elsojo != "" && this.state.masodikjo != "" && this.state.harmadikjo != ""){
+    if (this.state.tovabb == 7){
       return(
         <View style={{ flex: 1 }}>
             <View
@@ -468,17 +597,71 @@ export default class Home extends Component {
                 marginTop: height / 20
               }}
             >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
               <Image
                 resizeMode="stretch"
                 style={{
-                  width: width/1.4,
-                  height: height / 3,
+                  width: height / 2,
+                  height: height / 2,
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20
                 }}
-                source={require("../src/images/jatek4.png")}
+                source={require("../src/images/Megfigyeles/Laptop.jpg")}
               />
+
+              <TouchableOpacity
+                onPress={() => this.setState({tovabb:8})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            
+          </View>)
+    }if (this.state.tovabb == 8){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
 
               <Text
                 style={{
@@ -490,12 +673,12 @@ export default class Home extends Component {
                   marginTop: 10
                 }}
               >
-                {"Az utcazene képen mit reklámoz a zenészek mögött lévő plakát?"}
+                {"Mit reklámoz a zenészek mögött lévő plakát?"}
               </Text>
             </View>
             <View style={{ flex: 1, alignItems: "center"}}>
               <TouchableOpacity
-                onPress={() => this.setState({negyedikRossz:1})}
+                onPress={() => this.setState({negyedikjo:1, tovabb:9})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -518,12 +701,12 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"digitális kamerát"}
+                    {"Laptopot"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({negyedikjo:1})}
+                onPress={() => this.setState({negyedikRossz:1, tovabb:9})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -546,12 +729,12 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"laptopot"}
+                    {"Digitális kamerát"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({negyedikRossz:1})}
+                onPress={() => this.setState({negyedikRossz:1, tovabb:9})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -574,14 +757,14 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"kávéfőzőt"}
+                    {"Kávéfőzőt"}
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
           </View>)
     }
-    if (this.state.otodikjo == "" && this.state.elsojo != "" && this.state.masodikjo != "" && this.state.harmadikjo != ""&& this.state.negyedikjo != ""){
+    if (this.state.tovabb == 9){
       return(
         <View style={{ flex: 1 }}>
             <View
@@ -591,17 +774,71 @@ export default class Home extends Component {
                 marginTop: height / 20
               }}
             >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
               <Image
                 resizeMode="stretch"
                 style={{
-                  width: width/1.4,
-                  height: height / 3,
+                  width: height / 2,
+                  height: height / 2,
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20
                 }}
-                source={require("../src/images/jatek5.png")}
+                source={require("../src/images/Megfigyeles/McDonalds.jpg")}
               />
+              <TouchableOpacity
+                onPress={() => this.setState({tovabb:10})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            
+          </View>)
+    }
+    if (this.state.tovabb == 10){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
 
               <Text
                 style={{
@@ -613,40 +850,12 @@ export default class Home extends Component {
                   marginTop: 10
                 }}
               >
-                {"A nagyváros képen milyen gyorsétterem logója látható?"}
+                {"A képen milyen gyorsétterem logója látható?"}
               </Text>
             </View>
             <View style={{ flex: 1, alignItems: "center"}}>
               <TouchableOpacity
-                onPress={() => this.setState({otodikRossz:1})}
-                underlayColor="hsla(360, 100%, 100%, 1.0)"
-              >
-                <View
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: 20,
-                    width: width - 50,
-                    height: 40,
-                    marginTop:10,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "black",
-                      fontSize: 20,
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      marginTop: 0
-                    }}
-                  >
-                    {"Burger King"}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.setState({otodikRossz:1})}
+                onPress={() => this.setState({otodikRossz:1, tovabb:11})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -674,7 +883,7 @@ export default class Home extends Component {
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({otodikjo:1})}
+                onPress={() => this.setState({otodikRossz:1, tovabb:11})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -697,14 +906,42 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"McDonalds"}
+                    {"Burger King"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.setState({otodikjo:1, tovabb:11})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                                        {"McDonalds"}
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
           </View>)
     }
-    if (this.state.hatodikjo == "" && this.state.elsojo != "" && this.state.masodikjo != "" && this.state.harmadikjo != ""&& this.state.negyedikjo != ""&& this.state.otodikjo != ""){
+    if (this.state.tovabb == 11){
       return(
         <View style={{ flex: 1 }}>
             <View
@@ -714,18 +951,73 @@ export default class Home extends Component {
                 marginTop: height / 20
               }}
             >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
               <Image
                 resizeMode="stretch"
                 style={{
-                  width: width/1.4,
-                  height: height / 3,
+                  width: height / 2,
+                  height: height / 2,
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20
                 }}
-                source={require("../src/images/jatek6.png")}
+                source={require("../src/images/Megfigyeles/Asics.jpg")}
               />
 
+               <TouchableOpacity
+                onPress={() => this.setState({tovabb:12})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+           
+          </View>)
+    }
+    if (this.state.tovabb == 12){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
+            
               <Text
                 style={{
                   color: "black",
@@ -736,12 +1028,12 @@ export default class Home extends Component {
                   marginTop: 10
                 }}
               >
-                {"A városnéző busz milyen cipőt reklámoz?"}
+               {"A városnéző busz milyen cipőt reklámoz?"}
               </Text>
             </View>
             <View style={{ flex: 1, alignItems: "center"}}>
               <TouchableOpacity
-                onPress={() => this.setState({otodikRossz:1})}
+                onPress={() => this.setState({hatodikRossz:1, tovabb:13})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -769,7 +1061,7 @@ export default class Home extends Component {
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({orodikRossz:1})}
+                onPress={() => this.setState({hatodikRossz:1, tovabb:13})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -797,7 +1089,7 @@ export default class Home extends Component {
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({hatodikjo:1})}
+                onPress={() => this.setState({hatodikjo:1, tovabb:13})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -827,7 +1119,7 @@ export default class Home extends Component {
             </View>
           </View>)
     }
-    if (this.state.hetedikjo == "" && this.state.elsojo != "" && this.state.masodikjo != "" && this.state.harmadikjo != ""&& this.state.negyedikjo != ""&& this.state.otodikjo != ""&& this.state.harmadikjo != ""){
+    if (this.state.tovabb == 13){
       return(
         <View style={{ flex: 1 }}>
             <View
@@ -837,18 +1129,73 @@ export default class Home extends Component {
                 marginTop: height / 20
               }}
             >
+            <Text
+                style={{
+                  color: "black",
+                  fontSize: 20,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Figyeld meg a képet!"}
+              </Text>
               <Image
                 resizeMode="stretch"
                 style={{
-                  width: width/1.4,
-                  height: height / 3,
+                  width: height / 2,
+                  height: height / 2,
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20
                 }}
-                source={require("../src/images/jatek7.png")}
+                source={require("../src/images/Megfigyeles/Sapka.jpg")}
               />
 
+            <TouchableOpacity
+                onPress={() => this.setState({tovabb:14})}
+                underlayColor="hsla(360, 100%, 100%, 1.0)"
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 20,
+                    width: width - 50,
+                    height: 40,
+                    marginTop:10,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "black",
+                      fontSize: 20,
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      marginTop: 0
+                    }}
+                  >
+                    {"Megfigyeltem"}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            
+          </View>)
+    }
+    if (this.state.tovabb == 14){
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
+            
               <Text
                 style={{
                   color: "black",
@@ -859,12 +1206,12 @@ export default class Home extends Component {
                   marginTop: 10
                 }}
               >
-                {"Hány kislegényen van baseball-sapka?"}
+               {"Hány kislegényen van baseball-sapka?"}
               </Text>
             </View>
             <View style={{ flex: 1, alignItems: "center"}}>
               <TouchableOpacity
-                onPress={() => this.setState({hetedikjo:1, ertekeles:"mehet"})}
+                onPress={() => this.setState({hetedikRossz:1, tovabb:30, ertekeles:"mehet"})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -887,12 +1234,12 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"kettőn"}
+                    {"Hármon"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({orodikRossz:1})}
+                onPress={() => this.setState({hetedikRossz:1, tovabb:30, ertekeles:"mehet"})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -915,12 +1262,12 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"egyen"}
+                    {"Egyen"}
                   </Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.setState({otodikRossz:1})}
+                onPress={() => this.setState({hetedikjo:1, tovabb:30, ertekeles:"mehet"})}
                 underlayColor="hsla(360, 100%, 100%, 1.0)"
               >
                 <View
@@ -943,7 +1290,7 @@ export default class Home extends Component {
                       marginTop: 0
                     }}
                   >
-                    {"hármon"}
+                    {"Kettőn"}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -951,6 +1298,8 @@ export default class Home extends Component {
           </View>)
     }
     if (this.state.ertekeles == "mehet" ){
+      var ertek = Number(this.state.elsojo)+Number(this.state.masodikjo)+Number(this.state.harmadikjo)+Number(this.state.negyedikjo)+Number(this.state.otodikjo)+Number(this.state.hatodikjo)+Number(this.state.hetedikjo)
+      console.log(ertek)
       return(
         <View style={{ flex: 1 }}>
             <View
@@ -960,30 +1309,32 @@ export default class Home extends Component {
                 marginTop: height / 20
               }}
             >
-                <Image
-                resizeMode="stretch"
-                style={{
-                  width: width-40,
-                  height: height / 1.5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 20
-                }}
-                source={require("../src/images/megfigyeles.png")}
-              />
+                
 
 
               <Text
                 style={{
                   color: "black",
-                  fontSize: 20,
+                  fontSize: height/40,
                   marginBottom: 10,
                   textAlign: "center",
                   fontWeight: "bold",
                   marginTop: 10
                 }}
               >
-                {"Játék vége!"}
+                {"Helyes válaszok száma:"}
+              </Text>
+              <Text
+                style={{
+                  color: "black",
+                  fontSize: height/5,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"7/"}{ertek}
               </Text>
             </View>
           </View>)

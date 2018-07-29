@@ -20,20 +20,21 @@ import {
 } from "react-native";
 //import SplashScreen from 'react-native-splash-screen'
 
-import { Router, Scene, Actions } from "react-native-router-flux";
+import { Router, Scene, Actions, ActionConst} from "react-native-router-flux";
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import home from "./scenes/home";
 import what from "./scenes/what";
 import where from "./scenes/where";
 import game from "./scenes/game";
 import marker from "./scenes/marker";
-import gameOf from "./scenes/gameOf";
 import settings from "./scenes/settings";
 import reszletesnezet from "./scenes/reszletesnezet";
 import reszletesnezetWhere from "./scenes/reszletesnezetWhere";
 import reszletesnezetWhat from "./scenes/reszletesnezetWhat";
 import reszletesnezetNagykovet from "./scenes/reszletesnezetNagykovet";
 import gameEgyenruhak from "./scenes/gameEgyenruhak";
+import gameMegfigyeles from "./scenes/gameMegfigyeles";
+import gameMihianyzik from "./scenes/gameMihianyzik";
 
 
 
@@ -45,6 +46,7 @@ export default class Flux extends Component {
   }
 
   componentDidMount() {
+    
     /*if (Platform.OS === "android") {
       SplashScreen.close({
         animationType: SplashScreen.animationType.scale,
@@ -130,6 +132,7 @@ export default class Flux extends Component {
               key="home"
               component={home}
               title="home"
+              type={ActionConst.RESET}
               initial={true}
               onRight={() => {
               }}
@@ -138,13 +141,6 @@ export default class Flux extends Component {
               key="what"
               component={what}
               title="what"
-              onRight={() => {
-              }}
-            />
-            <Scene
-              key="gameOf"
-              component={gameOf}
-              title="gameOf"
               onRight={() => {
               }}
             />
@@ -208,6 +204,20 @@ export default class Flux extends Component {
               key="gameEgyenruhak"
               component={gameEgyenruhak}
               title="gameEgyenruhak"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="gameMegfigyeles"
+              component={gameMegfigyeles}
+              title="gameMegfigyeles"
+              onRight={() => {
+              }}
+            />
+            <Scene
+              key="gameMihianyzik"
+              component={gameMihianyzik}
+              title="gameMihianyzik"
               onRight={() => {
               }}
             />

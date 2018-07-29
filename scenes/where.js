@@ -127,7 +127,7 @@ export default class Where extends Component {
           <Head scene="where"/>
   
           <View style={{ flex: 1, justifyContent:'center'}}>
-          <ScrollView style={{backgroundColor:'transparent'}}>
+          <ScrollView removeClippedSubviews={true} style={{backgroundColor:'transparent'}}>
                 <ListView
             dataSource={this.dataSource.cloneWithRows(this.state.data)}
             enableEmptySections={true}

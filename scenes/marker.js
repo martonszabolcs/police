@@ -131,7 +131,7 @@ export default class Where extends Component {
   
           <View style={{ flex: 1, justifyContent:'center'}}>
           
-          <ScrollView style={{backgroundColor:'transparent'}}>
+          <ScrollView removeClippedSubviews={true} style={{backgroundColor:'transparent'}}>
           <View style={{ backgroundColor:'transparent', width:width, borderBottomLeftRadius:10, marginTop:20, borderBottomRightRadius:20, justifyContent:'center', alignItems:'center'}}>
           <Text numberOfLines={2} style={[styles.cim, {color:'white', marginLeft:5, width:width/1.5, paddingTop:2, paddingBottom:2, textAlign:'center', fontSize:height/30}]}>
                   Rendőr-főkapitányságok

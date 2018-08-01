@@ -9,6 +9,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.devfd.RNGeocoder.RNGeocoderPackage; // <--- import
+import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
 
 
 import java.util.Arrays;
@@ -27,7 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             SendSMSPackage.getInstance(),
-              new RNGeocoderPackage()
+              new RNGeocoderPackage(),
+              new RCTSplashScreenPackage()
       );
     }
 

@@ -97,10 +97,10 @@ export default class Home extends Component {
           }}
         >
           <Head scene="game"/>
-  
-          <View style={{ flex: 1, justifyContent:'center', margin:20}}>
-         
          <ScrollView>
+  
+          <View style={{ flex: 1, justifyContent:'center', marginLeft:20, marginRight:20, marginBottom:20, paddingTop:20}}>
+         
          <View
               style={{
                 flexDirection: "row",
@@ -266,8 +266,9 @@ export default class Home extends Component {
               </TouchableOpacity>
 
               </View>
-              </ScrollView>
             </View>
+              </ScrollView>
+            
           </View>
         </View>
     );

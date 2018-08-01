@@ -18,7 +18,8 @@ import {
   Alert,
   AsyncStorage
 } from "react-native";
-//import SplashScreen from 'react-native-splash-screen'
+
+import SplashScreen from 'react-native-smart-splash-screen'
 
 import { Router, Scene, Actions, ActionConst} from "react-native-router-flux";
 import { getStatusBarHeight } from 'react-native-status-bar-height';
@@ -47,13 +48,13 @@ export default class Flux extends Component {
 
   componentDidMount() {
     
-    /*if (Platform.OS === "android") {
+    if (Platform.OS === "android") {
       SplashScreen.close({
         animationType: SplashScreen.animationType.scale,
         duration: 850,
         delay: 500
       });
-    }*/
+    }
     BackHandler.addEventListener("hardwareBackPress", this.backPressed);
   }
   componentWillUnmount() {

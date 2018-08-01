@@ -1270,11 +1270,11 @@ export default class GameEgyenruha extends Component {
             </View>
           </View>)
     }
-    if (this.state.ertekeles == "mehet" ){
+     if (this.state.ertekeles == "mehet" ){
       var ertek = Number(this.state.elsojo)+Number(this.state.masodikjo)+Number(this.state.harmadikjo)+Number(this.state.negyedikjo)+Number(this.state.otodikjo)+Number(this.state.hatodikjo)+Number(this.state.hetedikjo)
-      console.log(ertek)
-      return(
-        <View style={{ flex: 1 }}>
+      if (ertek == 5){
+        return (
+          <View style={{ flex: 1 }}>
             <View
               style={{
                 justifyContent: "center",
@@ -1282,9 +1282,6 @@ export default class GameEgyenruha extends Component {
                 marginTop: height / 20
               }}
             >
-                
-
-
               <Text
                 style={{
                   color: "black",
@@ -1308,6 +1305,85 @@ export default class GameEgyenruha extends Component {
                 }}
               >
                 {"5/"}{ertek}
+              </Text>
+              <Text
+                style={{
+                  color: "black",
+                  fontSize: 16,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Nagyon jó! Gratulálunk!"}
+              </Text>
+            </View>
+          </View>
+          )
+      }
+      console.log(ertek)
+      var hiba = ""
+      if (this.state.elsojo == ""){
+         hiba = "1, "
+      }
+      if (this.state.masodikjo == ""){
+         hiba = hiba+"2, "
+      }
+      if (this.state.harmadikjo == ""){
+         hiba = hiba+"3, "
+      }
+      if (this.state.negyedikjo == ""){
+         hiba = hiba+"4, "
+      }
+      if (this.state.otodikjo == ""){
+         hiba = hiba+"5 "
+      }
+      return(
+        <View style={{ flex: 1 }}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: height / 20
+              }}
+            >
+              <Text
+                style={{
+                  color: "black",
+                  fontSize: height/40,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"Helyes válaszok száma:"}
+              </Text>
+              <Text
+                style={{
+                  color: "black",
+                  fontSize: height/5,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: 10
+                }}
+              >
+                {"5/"}{ertek}
+              </Text>
+              <Text
+                style={{
+                  color: "black",
+                  fontSize: 16,
+                  marginBottom: 10,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  padding:10,
+                  marginTop: 10
+                }}
+              >
+                {"Ezeknél nem találtad el a helyes választ:\n "+ hiba+"számú kép. \n Próbáld meg újra, hátha ezeket is meg tudod oldani!"}
               </Text>
             </View>
           </View>)

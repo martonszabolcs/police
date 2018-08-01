@@ -22,9 +22,9 @@ import Geocoder from "react-native-geocoder";
 import { Router, Scene, Actions } from "react-native-router-flux";
 import Head from "../src/parts/head";
 var { height, width } = Dimensions.get("window");
-import SendSMS from 'react-native-sms'
+import SendSMS from "react-native-sms";
 import call from "react-native-phone-call";
-var currentcity = ""
+var currentcity = "";
 const args = {
   number: "112", // String value with the number to call
   prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call
@@ -38,14 +38,14 @@ export default class Home extends Component {
       currentcity: "",
       interval: 0
     };
-    console.log('reset')
+    console.log("reset");
     //Actions.reset('home')
     this.gps();
     this.load();
-    console.log('contructor')
+    console.log("contructor");
   }
 
-  load(){
+  load() {
     AsyncStorage.getItem("teloszam").then(result => {
       var results = JSON.parse(result);
       if (results != null) {
@@ -53,19 +53,19 @@ export default class Home extends Component {
         this.setState({
           number1: results.number1,
           number2: results.number2,
-          number3: results.number3,
-        })
+          number3: results.number3
+        });
       }
-      if (this.state.number1 == undefined){
-      this.setState({number1: ""})
-    }
-    if (this.state.number2 == undefined){
-      this.setState({number2: ""})
-    }
-    if (this.state.number3 == undefined){
-      this.setState({number3: ""})
-    }
-  })
+      if (this.state.number1 == undefined) {
+        this.setState({ number1: "" });
+      }
+      if (this.state.number2 == undefined) {
+        this.setState({ number2: "" });
+      }
+      if (this.state.number3 == undefined) {
+        this.setState({ number3: "" });
+      }
+    });
   }
 
   componentDidMount() {}
@@ -74,24 +74,30 @@ export default class Home extends Component {
     console.log("rerender");
     if (this.state.currentcity) {
       return (
-       
         <View
           style={{
             height: 40,
-            marginTop:5,
-            marginLeft:5,
-            marginRight:5,
-            width: width-10,
+            marginTop: 5,
+            marginLeft: 5,
+            marginRight: 5,
+            width: width - 10,
             backgroundColor: "#0984E3",
             justifyContent: "center",
-            borderRadius:10,
+            borderRadius: 10,
             position: "absolute",
             top: height / 9,
-            alignItems: "center",
+            alignItems: "center"
           }}
         >
-         
-          <Text numberOfLines={1} style={{ color: "white", textAlign:'center', width:width-30, fontSize: 14 }}>
+          <Text
+            numberOfLines={1}
+            style={{
+              color: "white",
+              textAlign: "center",
+              width: width - 30,
+              fontSize: 14
+            }}
+          >
             {this.state.currentcity}
           </Text>
           <Text style={{ color: "white", fontSize: 12 }}>{" közelében"}</Text>
@@ -109,44 +115,58 @@ export default class Home extends Component {
           lng: position.coords.longitude
         };
         this.setState({
-
           lat: position.coords.latitude,
           lng: position.coords.longitude
-        }) 
+        });
         console.log(current);
         console.log(this.state);
 
         Geocoder.geocodePosition(current)
           .then(res => {
-            console.log(res)
-            if (res[0].streetNumber != null){
-                currentcity = res[0].countryCode + " " + res[0].postalCode + " " + res[0].locality + ", " + res[0].streetName + " " + res[0].streetNumber
+            console.log(res);
+            if (res[0].streetNumber != null) {
+              currentcity =
+                res[0].countryCode +
+                " " +
+                res[0].postalCode +
+                " " +
+                res[0].locality +
+                ", " +
+                res[0].streetName +
+                " " +
+                res[0].streetNumber;
             } else {
-                currentcity = res[0].countryCode + " " + res[0].postalCode + " " + res[0].locality + ", " + res[0].streetName;
-
+              currentcity =
+                res[0].countryCode +
+                " " +
+                res[0].postalCode +
+                " " +
+                res[0].locality +
+                ", " +
+                res[0].streetName;
             }
-            })
+          })
           .catch(err => console.log(err));
       },
-      error => {console.log(error.message)} ,
+      error => {
+        console.log(error.message);
+      },
       { enableHighAccuracy: true, distanceFilter: 1, timeout: 1000 }
     );
-  
-setTimeout(() =>{
 
-   if (currentcity != ""){
+    setTimeout(() => {
+      if (currentcity != "") {
         this.setState({
-          currentcity:currentcity,
-        })
+          currentcity: currentcity
+        });
       }
-    },1000)
+    }, 1000);
   }
 
   componentWillMount() {}
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID);
-      clearInterval(this._interval);
-
+    clearInterval(this._interval);
   }
 
   backPressed = () => {
@@ -176,9 +196,9 @@ setTimeout(() =>{
   handleLogout() {
     console.log("User logged out");
   }
-  componentWillReceiveProps(){
+  componentWillReceiveProps() {
     this.gps();
-    console.log("izé")
+    console.log("izé");
   }
   makerImage() {
     if (this.state.makerPress) {
@@ -216,51 +236,57 @@ setTimeout(() =>{
     }
   }
 
-  sms(){
-    console.log(this.state.number1)
-    console.log(this.state.number2)
-    console.log(this.state.number3)
+  sms() {
+    console.log(this.state.number1);
+    console.log(this.state.number2);
+    console.log(this.state.number3);
     var long = this.state.lng;
     var lat = this.state.lat;
-    
+
     var number1 = this.state.number1;
     var number2 = this.state.number2;
     var number3 = this.state.number3;
 
-    if(number1 && number2 && number3){
-      var data = [number1, number2, number3]
-    } 
-    if(number1 && number2 && number3 == ""){
-      var data = [number1, number2]
+    if (number1 && number2 && number3) {
+      var data = [number1, number2, number3];
     }
-    if(number1 && number3 && number2 == ""){
-      var data = [number1, number3]
+    if (number1 && number2 && number3 == "") {
+      var data = [number1, number2];
     }
-    if(number2 && number3 && number2 == ""){
-      var data = [number2, number3]
+    if (number1 && number3 && number2 == "") {
+      var data = [number1, number3];
     }
-
-    if(number2 && number1 == "" && number3 == ""){
-      var data = [number2]
-    }
-    if(number3 && number1 == "" && number2 == ""){
-      var data = [number3]
-    }
-    if(number1 && number2 == "" && number3 == ""){
-      var data = [number1]
+    if (number2 && number3 && number2 == "") {
+      var data = [number2, number3];
     }
 
+    if (number2 && number1 == "" && number3 == "") {
+      var data = [number2];
+    }
+    if (number3 && number1 == "" && number2 == "") {
+      var data = [number3];
+    }
+    if (number1 && number2 == "" && number3 == "") {
+      var data = [number1];
+    }
 
-
-  SendSMS.send({
-    body: 'A pozicióm:'+lat+"; "+long,
-    recipients: data,
-    successTypes: ['sent', 'queued']
-  }, (completed, cancelled, error) => {
-
-    console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
-
-  });
+    SendSMS.send(
+      {
+        body: "Bajban vagyok, kérlek, segíts! Az alábbi GPS koordinátán találsz meg: " + lat + "; " + long + " https://www.google.com/maps/search/"+ lat + "," + long,
+        recipients: data,
+        successTypes: ["sent", "queued"]
+      },
+      (completed, cancelled, error) => {
+        console.log(
+          "SMS Callback: completed: " +
+            completed +
+            " cancelled: " +
+            cancelled +
+            "error: " +
+            error
+        );
+      }
+    );
   }
 
   sosModal() {
@@ -276,105 +302,139 @@ setTimeout(() =>{
         >
           <View style={styles.modalBackground}>
             <View style={styles.modalContainer}>
-            <View
-                style={{ width:width, height:width/7, justifyContent: "flex-start", paddingTop:20, paddingLeft:20 }}
-              >
               <View
-                style={{ marginLeft:20, justifyContent: "flex-start", marginBottom:5 }}
+                style={{
+                  width: width,
+                  height: width / 7,
+                  justifyContent: "flex-start",
+                  paddingTop: 20,
+                  paddingLeft: 20
+                }}
               >
-                <TouchableOpacity
-                  onPress={() => {
-                    this.setState({ modalVisible: false });
+                <View
+                  style={{
+                    marginLeft: 20,
+                    justifyContent: "flex-start",
+                    marginBottom: 5
                   }}
                 >
-
-        <Image
-        resizeMode="stretch"
-        style={{ width: width / 8, height: width / 8 }}
-        source={require("../src/images/backCall.png")}/>
-                </TouchableOpacity>
-              </View>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.setState({ modalVisible: false });
+                    }}
+                  >
+                    <Image
+                      resizeMode="stretch"
+                      style={{ width: width / 8, height: width / 8 }}
+                      source={require("../src/images/backCall.png")}
+                    />
+                  </TouchableOpacity>
+                </View>
               </View>
               <View
                 style={{
                   flex: 1,
                   alignItems: "center",
-                  marginTop:height/20
+                  marginTop: height / 20
                 }}
               >
-              <Image
-            source={require("../src/images/telephone.png")}
-            style={{
-              height: width / 3.5,
-              width: width / 3.5,
-              marginTop: 0,
-            }}
-            resizeMode="stretch"
-          />
+                <Image
+                  source={require("../src/images/telephone.png")}
+                  style={{
+                    height: width / 3.5,
+                    width: width / 3.5,
+                    marginTop: 0
+                  }}
+                  resizeMode="stretch"
+                />
                 <View
                   style={{
                     justifyContent: "space-around",
                     alignItems: "center",
                     padding: 10,
-                    backgroundColor:'transparent',
-                    marginTop:height/20
+                    backgroundColor: "transparent",
+                    marginTop: height / 20
                   }}
                 >
                   <Text
                     style={{
                       color: "black",
-                      fontSize: height/25,
-                      fontWeight:'bold',
+                      fontSize: height / 25,
+                      fontWeight: "bold",
                       textAlign: "center",
-                      marginBottom:10
+                      marginBottom: 10
                     }}
                   >
                     {"Mikor hívd a 112-t?"}
                   </Text>
                   <View
-                  style={{
-                    backgroundColor:'transparent',
-                    borderRadius:20,
-                    width:width-40,
-                    padding: 20,
-                  }}
-                >
-                  <Text
                     style={{
-                      color: "black",
-                      fontSize: height/45,
-                      textAlign: "left"
+                      backgroundColor: "transparent",
+                      borderRadius: 20,
+                      width: width - 40,
+                      padding: 20
                     }}
                   >
-                    {"Minden olyan esetben, amikor emberi élet forog kockán, vagy esélyét érzékeled annak, hogy baj lehet (balesetet látott, tűzesetet észlel, vagy például betörést feltételez). Mindig fontold meg, hogy indítasz-e hívást, ugyanakkor ne habozz, ha érzed, hogy szükséges! "}
-                    
-                  </Text>
-                </View>
+                    <Text
+                      style={{
+                        color: "black",
+                        fontSize: height / 45,
+                        textAlign: "left"
+                      }}
+                    >
+                      {
+                        "Minden olyan esetben, amikor emberi élet forog kockán, vagy esélyét érzékeled annak, hogy baj lehet (balesetet látott, tűzesetet észlel, vagy például betörést feltételez). Mindig fontold meg, hogy indítasz-e hívást, ugyanakkor ne habozz, ha érzed, hogy szükséges! "
+                      }
+                    </Text>
+                  </View>
                 </View>
               </View>
-              <View style={{flexDirection:'row', justifyContent:'space-around',marginBottom:20, width:width-20}}>
-              <TouchableOpacity
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  marginBottom: 20,
+                  width: width - 20
+                }}
+              >
+                <TouchableOpacity
                   onPress={() => {
                     this.sms();
                     this.gps();
                   }}
                 >
-                  <View 
-                    style={[styles.modalButton, { backgroundColor: "white", borderWidth:1, borderColor:"#D77179" }]}>
-                  <Text style={{ color: "#D77179", textAlign:'center', fontSize:width/25 }}>{"Helyzetem küldése"}</Text>
+                  <View
+                    style={[
+                      styles.modalButton,
+                      {
+                        backgroundColor: "white",
+                        borderWidth: 1,
+                        borderColor: "#D77179"
+                      }
+                    ]}
+                  >
+                    <Text
+                      style={{
+                        color: "#D77179",
+                        textAlign: "center",
+                        fontSize: width / 25
+                      }}
+                    >
+                      {"Helyzetem küldése"}
+                    </Text>
                   </View>
                 </TouchableOpacity>
-              <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {
                     call(args).catch(console.log);
                   }}
                 >
-                  <View
-                   style={[styles.modalButton, {}]}>
-                    <Text style={{ color: "white", fontSize:width/25, }}>{"Segélyhívás"}</Text>
+                  <View style={[styles.modalButton, {}]}>
+                    <Text style={{ color: "white", fontSize: width / 25 }}>
+                      {"Segélyhívás"}
+                    </Text>
                   </View>
                 </TouchableOpacity>
-                
               </View>
             </View>
           </View>
@@ -386,7 +446,7 @@ setTimeout(() =>{
   render() {
     console.log(this.state.currentcity);
     return (
-      <View style={{ backgroundColor: "black", flex: 1, alignItems:'center' }}>
+      <View style={{ backgroundColor: "black", flex: 1, alignItems: "center" }}>
         <View
           style={{
             backgroundColor: "#74B9FF",
@@ -415,7 +475,6 @@ setTimeout(() =>{
           {this.gpsRender()}
 
           <View style={{ flex: 1, justifyContent: "center" }}>
-          
             <View
               style={{
                 flexDirection: "row",
@@ -444,7 +503,7 @@ setTimeout(() =>{
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 2,
-                    fontSize: height/50
+                    fontSize: height / 50
                   }}
                 >
                   {"HOL"}
@@ -455,7 +514,7 @@ setTimeout(() =>{
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 2,
-                    fontSize: height/50
+                    fontSize: height / 50
                   }}
                 >
                   {"TALÁLHATÓ?"}
@@ -483,7 +542,7 @@ setTimeout(() =>{
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 2,
-                    fontSize: height/50
+                    fontSize: height / 50
                   }}
                 >
                   {"MI TÖRTÉNT?"}
@@ -517,7 +576,7 @@ setTimeout(() =>{
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 2,
-                    fontSize: height/50
+                    fontSize: height / 50
                   }}
                 >
                   {"SEGÉLYHÍVÁS"}
@@ -552,7 +611,7 @@ setTimeout(() =>{
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 2,
-                    fontSize: height/50
+                    fontSize: height / 50
                   }}
                 >
                   {"HOVÁ"}
@@ -563,7 +622,7 @@ setTimeout(() =>{
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 2,
-                    fontSize: height/50
+                    fontSize: height / 50
                   }}
                 >
                   {"FORDULHATOK?"}
@@ -591,10 +650,10 @@ setTimeout(() =>{
                     textAlign: "center",
                     fontWeight: "bold",
                     marginTop: 2,
-                    fontSize: height/50
+                    fontSize: height / 50
                   }}
                 >
-                  {"JÁTÉK"}
+                  {"JÁTÉKOK"}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -615,17 +674,17 @@ const styles = StyleSheet.create({
   },
 
   modalContainer: {
-    height: height -50,
+    height: height - 50,
     borderRadius: 10,
-    width: width-40,
+    width: width - 40,
     backgroundColor: "white",
-    alignItems: "center",
+    alignItems: "center"
   },
   modalButton: {
-    height: height/10,
+    height: height / 10,
     backgroundColor: "#D77179",
     borderRadius: 20,
-    width: width /3,
+    width: width / 3,
     justifyContent: "center",
     alignItems: "center"
   }

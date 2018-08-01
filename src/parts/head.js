@@ -240,7 +240,7 @@ export default class Head extends Component {
     if (this.state.scene == "game"){
       return(
       <View style={{width:width/1.8, height:height/9, alignItems:'center', backgroundColor:"transparent", flexDirection:'row', justifyContent:'space-between'}}>
-        <TouchableOpacity onPress={(() => { Actions.home(); })}>
+        <TouchableOpacity onPress={(() => { Actions.pop(); })}>
       <View style={{marginLeft:10, width:width/5, height:height/9, backgroundColor:"#1A86E0", justifyContent:'center'}}>
 
         <Image

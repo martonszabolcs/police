@@ -122,7 +122,7 @@ export default class Home extends Component {
                 }}
               >
                 {
-                  "Mi ez?"
+                  "Az alkalmazásról"
                 }
               </Text>
               <Text
@@ -134,7 +134,7 @@ export default class Home extends Component {
                 }}
               >
                 {
-                  "Az „Ő pont segíthet” mobilalkalmazás gyors és hatékony segítséget nyújt abban az esetben, ha bajba kerülnél. Tájékoztatást ad a helyi rendőrkapitányságok, illetve a külföldi nagykövetségek elérhetőségeiről, valamint az „SOS” gomb megnyomásával azonnali segélyhívásra ad lehetőséget. A segítségkérés törtéhet a 112 segélyhívó tárcsázásásával vagy SMS-ben az aktuális tartózkodási helyed elküldésével. Itt add meg azoknak a telefonszámát, akiknek el szeretnéd majd küldeni a segélykérő üzeneted!"
+                  "Az „Ő pont segíthet” mobilalkalmazás gyors és hatékony segítséget nyújt abban az esetben, ha bajba kerülnél. Tájékoztatást ad a helyi rendőrkapitányságok, illetve a külföldi nagykövetségek elérhetőségeiről, valamint az „SOS” gomb megnyomásával azonnali segélyhívásra ad lehetőséget. A segítségkérés törtéhet a 112 segélyhívó tárcsázásásával vagy SMS-ben az aktuális tartózkodási helyed elküldésével. \n \n Itt add meg azoknak a telefonszámát, akiknek el szeretnéd majd küldeni a segélykérő üzeneted!"
                 }
               </Text>
 
